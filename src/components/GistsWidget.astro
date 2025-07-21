@@ -1,0 +1,126 @@
+---
+// GitHub Gists Interactive Component
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// Get gists data from content collections
+import { getEntry } from 'astro:content';
+const gistsData = await getEntry('widgets', 'gists');
+
+// Fallback data if content is not available
+const defaultGists = [];
+const gists = gistsData?.data?.featured || defaultGists;
+---
+
+<div class={`card p-6 ${className || ''}`}>
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+      Code Snippets & Gists
+    </h3>
+    <a
+      href="https://gist.github.com/yourusername"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+    >
+      View All Gists →
+    </a>
+  </div>
+
+  <div class="space-y-4">
+    {gists.length > 0 ? gists.map((gist) => (
+      <div class="gist-item border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex-1">
+            <h4 class="font-semibold text-gray-900 dark:text-gray-100 mb-1">
+              <a
+                href={gist.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {gist.title}
+              </a>
+            </h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+              {gist.description}
+            </p>
+          </div>
+          <div class="flex items-center gap-2 ml-4">
+            <span class="inline-flex items-center px-2 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+              {gist.language}
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <div class="flex flex-wrap gap-1">
+            {gist.files?.map((file) => (
+              <code class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-1 rounded">
+                {file}
+              </code>
+            ))}
+          </div>
+          <time class="text-xs text-gray-500 dark:text-gray-400">
+            {gist.updatedAt ? new Intl.DateTimeFormat('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            }).format(new Date(gist.updatedAt)) : 'N/A'}
+          </time>
+        </div>
+      </div>
+    )) : (
+      <div class="text-center py-8 text-gray-500 dark:text-gray-400">
+        <p>No gists available at the moment.</p>
+        <p class="text-sm mt-2">Check back later for code snippets and examples!</p>
+      </div>
+    )}
+  </div>
+
+  <!-- Interactive Filter Component -->
+  <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+    <div class="gist-filter" data-component="gist-filter">
+      <label for="language-filter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        Filter by Language:
+      </label>
+      <select
+        id="language-filter"
+        class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      >
+        <option value="all">All Languages</option>
+        <option value="TypeScript">TypeScript</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Client-side filtering functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterSelect = document.getElementById('language-filter');
+    const gistItems = document.querySelectorAll('.gist-item');
+
+    if (filterSelect) {
+      filterSelect.addEventListener('change', (e) => {
+        const selectedLanguage = (e.target as HTMLSelectElement).value;
+
+        gistItems.forEach((item) => {
+          const languageSpan = item.querySelector('.inline-flex');
+          const language = languageSpan?.textContent?.trim();
+
+          if (selectedLanguage === 'all' || language === selectedLanguage) {
+            (item as HTMLElement).style.display = 'block';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    }
+  });
+</script>

@@ -1,0 +1,45 @@
+{
+  "category": "books",
+  "items": [
+    {
+      "title": "Deep Work",
+      "author": "Cal Newport",
+      "description": "Structured focus time for complex problem-solving",
+      "status": "completed",
+      "rating": 5,
+      "url": "https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692",
+      "tags": ["Productivity", "Focus", "Professional Development"],
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "title": "Embedded Systems Architecture",
+      "author": "Daniele Lacamera",
+      "description": "Modern approaches to embedded system design",
+      "status": "completed",
+      "rating": 4,
+      "tags": ["Embedded", "Architecture", "Systems"],
+      "date": "2023",
+      "featured": true
+    },
+    {
+      "title": "AUTOSAR Explained",
+      "author": "Hendrik Schepers",
+      "description": "Comprehensive AUTOSAR platform understanding",
+      "status": "completed",
+      "rating": 4,
+      "tags": ["AUTOSAR", "Automotive", "Architecture"],
+      "date": "2022",
+      "featured": true
+    },
+    {
+      "title": "Building a Second Brain",
+      "author": "Tiago Forte",
+      "description": "Knowledge management in the AI era",
+      "status": "reading",
+      "tags": ["Knowledge Management", "Productivity", "AI"],
+      "date": "2024",
+      "featured": false
+    }
+  ]
+}

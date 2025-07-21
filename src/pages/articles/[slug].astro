@@ -1,0 +1,129 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../components/Layout.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+    props: article,
+  }));
+}
+
+type Props = CollectionEntry<'articles'>;
+
+const article = Astro.props;
+const { Content } = await article.render();
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(article.data.publishDate));
+
+const formattedUpdateDate = article.data.updatedDate
+  ? new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(article.data.updatedDate))
+  : null;
+---
+
+<Layout
+  title={article.data.title}
+  description={article.data.description}
+  canonicalURL={new URL(`/articles/${article.slug}`, Astro.site).href}
+>
+  <article class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <!-- Article Header -->
+      <header class="mb-12 text-center">
+        <div class="mb-4">
+          <a
+            href="/articles"
+            class="inline-flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            Back to Articles
+          </a>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
+          {article.data.title}
+        </h1>
+
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
+          {article.data.description}
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <time datetime={article.data.publishDate.toISOString()}>
+            Published {formattedDate}
+          </time>
+          {formattedUpdateDate && (
+            <span class="hidden sm:block">•</span>
+            <time datetime={article.data.updatedDate?.toISOString()}>
+              Updated {formattedUpdateDate}
+            </time>
+          )}
+        </div>
+
+        {article.data.tags.length > 0 && (
+          <div class="flex flex-wrap justify-center gap-2 mt-6">
+            {article.data.tags.map((tag) => (
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-gray dark:prose-invert max-w-none">
+        <Content />
+      </div>
+
+      <!-- Article Footer -->
+      <footer class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div class="text-center sm:text-left">
+            <p class="text-gray-600 dark:text-gray-400 mb-2">
+              Enjoyed this article? Let's connect!
+            </p>
+            <div class="flex justify-center sm:justify-start space-x-4">
+              <a
+                href="https://twitter.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
+                Share on Twitter
+              </a>
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <div class="text-center sm:text-right">
+            <a
+              href="/articles"
+              class="btn-secondary"
+            >
+              Read More Articles
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </article>
+</Layout>

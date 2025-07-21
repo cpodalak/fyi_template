@@ -1,0 +1,33 @@
+{
+  "category": "goals",
+  "items": [
+    {
+      "title": "Large Language Models Integration",
+      "description": "Deep dive into LLM APIs, fine-tuning, and enterprise integration patterns",
+      "status": "in-progress",
+      "tags": ["AI", "LLM", "Integration", "Enterprise"],
+      "featured": true
+    },
+    {
+      "title": "Rust for Systems Programming",
+      "description": "Learn Rust for memory-safe systems programming and WebAssembly",
+      "status": "in-progress",
+      "tags": ["Rust", "Systems Programming", "WebAssembly", "Memory Safety"],
+      "featured": true
+    },
+    {
+      "title": "Edge Computing & IoT",
+      "description": "Explore edge computing architectures and IoT device management",
+      "status": "want-to-read",
+      "tags": ["Edge Computing", "IoT", "Architecture", "Infrastructure"],
+      "featured": false
+    },
+    {
+      "title": "Advanced Prompt Engineering",
+      "description": "Master complex prompting techniques, chain-of-thought, and tool use",
+      "status": "in-progress",
+      "tags": ["AI", "Prompt Engineering", "Chain-of-thought", "Tools"],
+      "featured": true
+    }
+  ]
+}

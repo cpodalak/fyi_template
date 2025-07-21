@@ -1,0 +1,53 @@
+name: Fast Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      skip_checks:
+        description: 'Skip quality checks (use with caution)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  fast-deploy:
+    name: Fast Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run basic checks
+        if: ${{ !inputs.skip_checks }}
+        run: |
+          npm run type-check
+          npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: 'Fast deploy: ${{ github.sha }}'
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Notify deployment success
+        run: |
+          echo "⚡ Fast deployment completed!"
+          echo "Checks skipped: ${{ inputs.skip_checks }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Site URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}"

@@ -1,0 +1,29 @@
+{
+  "category": "domain",
+  "items": [
+    {
+      "name": "Automotive Industry",
+      "level": 5,
+      "category": "domain",
+      "description": "Deep understanding of automotive development lifecycle",
+      "years": 10,
+      "tags": ["Automotive", "V-Model", "Supplier Management", "OEM Processes"]
+    },
+    {
+      "name": "Modern Web Development",
+      "level": 4,
+      "category": "domain",
+      "description": "Full-stack development with modern frameworks",
+      "years": 5,
+      "tags": ["React", "TypeScript", "Node.js", "Full-stack", "Web APIs"]
+    },
+    {
+      "name": "Open Source Contribution",
+      "level": 4,
+      "category": "domain",
+      "description": "Active contributor to community projects",
+      "years": 6,
+      "tags": ["Open Source", "Community", "Collaboration", "Git", "GitHub"]
+    }
+  ]
+}

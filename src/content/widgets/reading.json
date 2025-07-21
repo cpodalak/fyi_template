@@ -1,0 +1,55 @@
+{
+  "type": "reading",
+  "title": "Current Reading",
+  "description": "Books and resources I'm currently exploring",
+  "config": {
+    "cta": {
+      "text": "View Reading List",
+      "href": "/learnings#books"
+    }
+  },
+  "reading": [
+    {
+      "id": 1,
+      "title": "Designing Data-Intensive Applications",
+      "author": "Martin Kleppmann",
+      "progress": 65,
+      "rating": null,
+      "notes": "Excellent deep dive into distributed systems. Chapter 7 on transactions is particularly insightful for understanding database consistency models.",
+      "tags": ["systems", "databases", "architecture"],
+      "startDate": "2024-01-01"
+    },
+    {
+      "id": 2,
+      "title": "Staff Engineer",
+      "author": "Will Larson",
+      "progress": 30,
+      "rating": null,
+      "notes": "Great insights on technical leadership. The archetypes chapter really helped me understand different paths for senior engineers.",
+      "tags": ["leadership", "career", "engineering"],
+      "startDate": "2024-01-10"
+    }
+  ],
+  "read": [
+    {
+      "id": 3,
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "progress": 100,
+      "rating": 5,
+      "notes": "Transformative approach to building habits. The 1% better concept is simple but powerful.",
+      "tags": ["productivity", "habits", "self-improvement"],
+      "startDate": "2023-12-01",
+      "completedDate": "2024-01-05"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": 4,
+      "title": "Fundamentals of Software Architecture",
+      "author": "Mark Richards & Neal Ford",
+      "notes": "Want to read this to complement my systems knowledge",
+      "tags": ["architecture", "systems", "design"]
+    }
+  ]
+}

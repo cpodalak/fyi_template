@@ -1,0 +1,64 @@
+---
+interface Props {
+  title: string;
+  prompt: string;
+  use: string;
+  category?: string;
+}
+
+const { title, prompt, use, category = "General" } = Astro.props;
+const promptId = `prompt-${title.toLowerCase().replace(/\s+/g, '-')}`;
+---
+
+<div class="card p-6 hover:shadow-lg transition-shadow group">
+  <div class="flex justify-between items-start mb-3">
+    <div>
+      <h3 class="font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
+      <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded">
+        {category}
+      </span>
+    </div>
+    <button
+      class="copy-btn opacity-0 group-hover:opacity-100 transition-opacity text-xs px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md"
+      data-text={prompt}
+      title="Copy prompt"
+    >
+      Copy
+    </button>
+  </div>
+
+  <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
+    <strong>Use for:</strong> {use}
+  </p>
+
+  <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+    <code class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+      {prompt}
+    </code>
+  </div>
+</div>
+
+<script>
+  // Copy functionality for this component
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.querySelector(`[data-text="${prompt}"]`);
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(prompt);
+          const originalText = copyBtn.textContent;
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('bg-green-100', 'dark:bg-green-900', 'text-green-800', 'dark:text-green-200');
+
+          setTimeout(() => {
+            copyBtn.textContent = originalText;
+            copyBtn.classList.remove('bg-green-100', 'dark:bg-green-900', 'text-green-800', 'dark:text-green-200');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,41 @@
+{
+  "type": "gists",
+  "title": "Code Snippets",
+  "description": "Useful code snippets and examples from my development work",
+  "config": {
+    "githubUsername": "yourusername",
+    "cta": {
+      "text": "View All Gists",
+      "href": "https://gist.github.com/yourusername"
+    }
+  },
+  "featured": [
+    {
+      "id": "1",
+      "title": "React Custom Hooks Collection",
+      "description": "A collection of useful React custom hooks for common use cases",
+      "language": "TypeScript",
+      "url": "https://gist.github.com/yourusername/gist1",
+      "updatedAt": "2024-01-15",
+      "files": ["useLocalStorage.ts", "useDebounce.ts", "useFetch.ts"]
+    },
+    {
+      "id": "2",
+      "title": "CSS Utility Classes",
+      "description": "Handy CSS utility classes for common styling patterns",
+      "language": "CSS",
+      "url": "https://gist.github.com/yourusername/gist2",
+      "updatedAt": "2024-01-10",
+      "files": ["utilities.css"]
+    },
+    {
+      "id": "3",
+      "title": "TypeScript Type Guards",
+      "description": "Type guards and utility types for better TypeScript development",
+      "language": "TypeScript",
+      "url": "https://gist.github.com/yourusername/gist3",
+      "updatedAt": "2024-01-08",
+      "files": ["type-guards.ts", "utility-types.ts"]
+    }
+  ]
+}

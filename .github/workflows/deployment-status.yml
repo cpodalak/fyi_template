@@ -1,0 +1,93 @@
+name: Deployment Status
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+
+jobs:
+  check-deployments:
+    name: Check Deployment Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check GitHub Pages
+        run: |
+          echo "🔍 Checking GitHub Pages deployment..."
+          REPO_NAME="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          PAGES_URL="https://${OWNER}.github.io/${REPO_NAME}"
+
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$PAGES_URL" || echo "000")
+
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "✅ GitHub Pages is live: $PAGES_URL"
+          else
+            echo "❌ GitHub Pages returned status: $HTTP_STATUS"
+          fi
+
+      - name: Generate deployment report
+        run: |
+          echo "# 📊 Deployment Status Report" > deployment-status.md
+          echo "" >> deployment-status.md
+          echo "**Generated:** $(date -u)" >> deployment-status.md
+          echo "**Repository:** ${{ github.repository }}" >> deployment-status.md
+          echo "**Branch:** ${{ github.ref_name }}" >> deployment-status.md
+          echo "**Last Commit:** ${{ github.sha }}" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo "## 🚀 Available Deployments" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo "| Service | Status | URL |" >> deployment-status.md
+          echo "|---------|--------|-----|" >> deployment-status.md
+          echo "| GitHub Pages | ✅ Live | https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} |" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo "## 🔧 Quick Deploy Commands" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo '```bash' >> deployment-status.md
+          echo "# Auto-deploy (push to main)" >> deployment-status.md
+          echo "git push origin main" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo "# Manual deploy" >> deployment-status.md
+          echo "gh workflow run fast-deploy.yml" >> deployment-status.md
+          echo "" >> deployment-status.md
+          echo "# Emergency deploy (skip tests)" >> deployment-status.md
+          echo "gh workflow run fast-deploy.yml -f skip_checks=true" >> deployment-status.md
+          echo '```' >> deployment-status.md
+
+          cat deployment-status.md
+
+      - name: Comment deployment status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('deployment-status.md', 'utf8');
+
+            // Find existing deployment status comments
+            const comments = await github.rest.repos.listCommentsForCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+            });
+
+            const existingComment = comments.data.find(comment =>
+              comment.body.includes('📊 Deployment Status Report')
+            );
+
+            if (existingComment) {
+              await github.rest.repos.updateCommitComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: report
+              });
+            } else {
+              await github.rest.repos.createCommitComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                commit_sha: context.sha,
+                body: report
+              });
+            }

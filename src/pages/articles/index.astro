@@ -1,0 +1,103 @@
+---
+import Layout from '../../components/Layout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const publishedArticles = allArticles
+  .filter(article => !article.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+// Get unique tags
+const allTags = [...new Set(publishedArticles.flatMap(article => article.data.tags))].sort();
+---
+
+<Layout
+  title="Articles"
+  description="Thoughts, tutorials, and insights about web development, design, and technology."
+>
+  <div class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          Articles
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          Sharing my thoughts and learnings about web development, design, and the technologies that shape our digital world.
+        </p>
+      </div>
+
+      <!-- Filter Tags -->
+      {allTags.length > 0 && (
+        <div class="mb-12">
+          <div class="flex flex-wrap justify-center gap-2">
+            <button
+              class="filter-tag active px-4 py-2 text-sm font-medium rounded-full border border-gray-300 dark:border-gray-700 bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 transition-colors"
+              data-tag="all"
+            >
+              All Articles
+            </button>
+            {allTags.map((tag) => (
+              <button
+                class="filter-tag px-4 py-2 text-sm font-medium rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                data-tag={tag}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Articles Grid -->
+      {publishedArticles.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+          {publishedArticles.map((article) => (
+            <div class="article-item animate-fade-in" data-tags={JSON.stringify(article.data.tags)}>
+              <ArticleCard article={article} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-gray-600 dark:text-gray-400 text-lg">
+            No articles published yet. Check back soon!
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Article filtering functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-tag');
+    const articleItems = document.querySelectorAll('.article-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedTag = button.getAttribute('data-tag');
+
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-gray-900', 'text-white', 'dark:bg-gray-100', 'dark:text-gray-900'));
+        button.classList.add('active', 'bg-gray-900', 'text-white', 'dark:bg-gray-100', 'dark:text-gray-900');
+
+        // Filter articles
+        articleItems.forEach(item => {
+          const articleTags = JSON.parse(item.getAttribute('data-tags') || '[]');
+          const shouldShow = selectedTag === 'all' || articleTags.includes(selectedTag);
+
+          if (shouldShow) {
+            item.style.display = 'block';
+            item.classList.add('animate-fade-in');
+          } else {
+            item.style.display = 'none';
+            item.classList.remove('animate-fade-in');
+          }
+        });
+      });
+    });
+  });
+</script>

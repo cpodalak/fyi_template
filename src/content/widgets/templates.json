@@ -1,0 +1,37 @@
+{
+  "type": "templates",
+  "title": "Project Templates",
+  "description": "Starter templates and boilerplates for different project types",
+  "config": {
+    "cta": {
+      "text": "Browse All Templates",
+      "href": "https://github.com/yourusername?tab=repositories"
+    }
+  },
+  "featured": [
+    {
+      "id": 1,
+      "category": "Product Management",
+      "title": "Epic Hypothesis Template",
+      "description": "Structured template for defining and validating product epics with clear hypothesis statements",
+      "tags": ["product", "strategy", "hypothesis"],
+      "content": "# Epic Hypothesis Template\n\n## Epic Title\n[Brief, descriptive title of the epic]\n\n## Problem Statement\n**As a** [user type]\n**I want** [capability/feature]\n**So that** [business value/outcome]\n\n## Hypothesis\nWe believe that [building this feature/capability]\nFor [target user/persona]\nWill result in [expected outcome/metric improvement]\nWe will know this is true when [measurable success criteria]\n\n## Success Metrics\n- Primary: [Key metric and target]\n- Secondary: [Supporting metrics]\n\n## Assumptions\n1. [List key assumptions that need validation]\n2. [Additional assumptions]"
+    },
+    {
+      "id": 2,
+      "category": "Development",
+      "title": "Technical Design Document",
+      "description": "Comprehensive template for technical design documentation",
+      "tags": ["engineering", "architecture", "documentation"],
+      "content": "# Technical Design Document\n\n## Overview\n**Project**: [Project name]\n**Author**: [Your name]\n**Date**: [Current date]\n**Status**: [Draft/Review/Approved]\n\n## Problem Statement\n[Clear description of the problem being solved]\n\n## Goals & Non-Goals\n### Goals\n- [Primary objectives]\n\n### Non-Goals\n- [What this design explicitly does not address]\n\n## Proposed Solution\n### High-Level Design\n[Architecture overview, diagrams]\n\n### Detailed Design\n[Component breakdown, APIs, data models]\n\n### Technology Stack\n- **Frontend**: [Technologies]\n- **Backend**: [Technologies]"
+    },
+    {
+      "id": 3,
+      "category": "Documentation",
+      "title": "README Template",
+      "description": "Professional README template for open source projects",
+      "tags": ["documentation", "readme", "open-source"],
+      "content": "# Project Name\n\n> Brief description of what your project does\n\n## Installation\n\n```bash\nnpm install project-name\n```\n\n## Usage\n\n```javascript\nconst project = require('project-name');\n\n// Example usage\nproject.doSomething();\n```\n\n## API\n\n### Methods\n\n#### `doSomething()`\n\nDescription of what this method does.\n\n## Contributing\n\n1. Fork it\n2. Create your feature branch (`git checkout -b feature/amazing-feature`)\n3. Commit your changes (`git commit -am 'Add amazing feature'`)\n4. Push to the branch (`git push origin feature/amazing-feature`)\n5. Create a Pull Request\n\n## License\n\nMIT"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Your Name",
+  "tagline": "Systems Engineer + AI Enabler",
+  "email": "your.email@example.com",
+  "website": "https://yoursite.com",
+  "location": "San Francisco, CA",
+  "bio": "Bridging traditional automotive/embedded expertise with AI-powered development workflows. Specializing in AUTOSAR, safety-critical systems, and modern DevOps practices.",
+  "avatar": "/avatar.jpg",
+  "social": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/yourusername",
+      "handle": "@yourusername",
+      "icon": "github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com/in/yourusername",
+      "handle": "yourusername",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/yourusername",
+      "handle": "@yourusername",
+      "icon": "twitter"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:your.email@example.com",
+      "handle": "your.email@example.com",
+      "icon": "email"
+    }
+  ],
+  "status": {
+    "message": "Open to new opportunities and collaborations",
+    "availability": "available",
+    "currentProject": "Building AI-powered development tools",
+    "lastUpdated": "2025-01-15"
+  }
+}

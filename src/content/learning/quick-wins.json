@@ -1,0 +1,41 @@
+{
+  "category": "quick-wins",
+  "items": [
+    {
+      "title": "AUTOSAR SWC Template",
+      "content": "Use AI to generate boilerplate AUTOSAR software components with proper RTE interfaces",
+      "tags": ["AUTOSAR", "AI", "Templates"],
+      "featured": true
+    },
+    {
+      "title": "AI Code Review",
+      "content": "Use `git diff | claude` for instant code reviews with domain expertise",
+      "tags": ["AI", "Git", "Productivity"],
+      "featured": true
+    },
+    {
+      "title": "Embedded Memory Check",
+      "content": "valgrind --tool=memcheck --leak-check=full ./your_embedded_app",
+      "tags": ["Embedded", "Debugging", "Memory"],
+      "featured": false
+    },
+    {
+      "title": "CSS Grid Auto-fit",
+      "content": "grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))",
+      "tags": ["CSS", "Grid", "Responsive"],
+      "featured": false
+    },
+    {
+      "title": "RTOS Task Analysis",
+      "content": "Use LLMs to analyze task priorities and deadlines in real-time systems",
+      "tags": ["RTOS", "AI", "Analysis"],
+      "featured": true
+    },
+    {
+      "title": "TypeScript Strict Mode",
+      "content": "Enable strict mode early. Pain now = less bugs later",
+      "tags": ["TypeScript", "Best Practice"],
+      "featured": false
+    }
+  ]
+}

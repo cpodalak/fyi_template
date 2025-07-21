@@ -1,0 +1,37 @@
+{
+  "category": "technical",
+  "items": [
+    {
+      "name": "AUTOSAR/Embedded Systems",
+      "level": 5,
+      "category": "technical",
+      "description": "Deep expertise in automotive software architecture",
+      "years": 10,
+      "tags": ["AUTOSAR", "Embedded", "Automotive", "Real-time"]
+    },
+    {
+      "name": "Safety-Critical Systems (ISO 26262)",
+      "level": 4,
+      "category": "technical",
+      "description": "Functional safety and ASIL development",
+      "years": 8,
+      "tags": ["ISO 26262", "Functional Safety", "ASIL", "Risk Assessment"]
+    },
+    {
+      "name": "C/C++ Systems Programming",
+      "level": 5,
+      "category": "technical",
+      "description": "Low-level systems and performance optimization",
+      "years": 12,
+      "tags": ["C++", "Systems Programming", "Performance", "Memory Management"]
+    },
+    {
+      "name": "DevOps & CI/CD",
+      "level": 4,
+      "category": "technical",
+      "description": "Modern deployment and automation practices",
+      "years": 6,
+      "tags": ["DevOps", "CI/CD", "Docker", "Kubernetes", "Automation"]
+    }
+  ]
+}

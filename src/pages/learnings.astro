@@ -1,0 +1,150 @@
+---
+import Layout from '../components/Layout.astro';
+import ReadingWidget from '../components/ReadingWidget.astro';
+import GistsWidget from '../components/GistsWidget.astro';
+import TemplatesWidget from '../components/TemplatesWidget.astro';
+import ContactWidget from '../components/ContactWidget.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+// Get data from content collections
+const learningsPageData = await getEntry('pages', 'learnings');
+const quickWinsData = await getEntry('learning', 'quick-wins');
+const booksData = await getEntry('learning', 'books');
+const coursesData = await getEntry('learning', 'courses');
+const goalsData = await getEntry('learning', 'goals');
+
+// Get all prompts from collection
+const allPrompts = await getCollection('prompts');
+---
+
+<Layout
+  title="Learnings"
+  description="Knowledge sharing through insights, code snippets, templates, and curated reading."
+>
+  <div class="py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          {learningsPageData?.data.title || 'Learnings'}
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          {learningsPageData?.data.description || 'Knowledge sharing through insights, code snippets, templates, and curated reading.'}
+        </p>
+      </div>
+
+      <!-- Tabbed Interface -->
+      <div class="mb-8">
+        <div class="border-b border-gray-200 dark:border-gray-700">
+          <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+            <button class="tab-button active" data-tab="insights">
+              Insights
+            </button>
+            <button class="tab-button" data-tab="gists">
+              Gists
+            </button>
+            <button class="tab-button" data-tab="templates">
+              Templates
+            </button>
+            <button class="tab-button" data-tab="reading">
+              Reading
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="mb-8">
+        <input
+          type="text"
+          placeholder="Search learnings..."
+          class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        />
+      </div>
+
+      <!-- Insights Tab - Quick Wins -->
+      <div id="insights" class="tab-content">
+        <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6 flex items-center">
+          💡 Quick Wins
+          <span class="ml-2 text-sm font-normal text-gray-500">Bite-sized insights</span>
+        </h2>
+        <div class="grid gap-6">
+          {quickWinsData?.data.items.map((item) => (
+            <div class="card p-6 hover:shadow-lg transition-shadow">
+              <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">{item.title}</h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">{item.content}</p>
+              <div class="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Gists Tab -->
+      <div id="gists" class="tab-content hidden">
+        <GistsWidget />
+      </div>
+
+      <!-- Templates Tab -->
+      <div id="templates" class="tab-content hidden">
+        <TemplatesWidget />
+      </div>
+
+      <!-- Reading Tab -->
+      <div id="reading" class="tab-content hidden">
+        <ReadingWidget />
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Widget at bottom -->
+  <div class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
+    <div class="max-w-4xl mx-auto">
+      <ContactWidget />
+    </div>
+  </div>
+
+  <!-- Tab functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const targetTab = button.getAttribute('data-tab');
+
+          // Remove active class from all buttons
+          tabButtons.forEach(btn => btn.classList.remove('active'));
+          // Hide all tab contents
+          tabContents.forEach(content => content.classList.add('hidden'));
+
+          // Add active class to clicked button
+          button.classList.add('active');
+          // Show target tab content
+          document.getElementById(targetTab)?.classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+
+  <style>
+    .tab-button {
+      @apply py-2 px-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300;
+    }
+
+    .tab-button.active {
+      @apply border-blue-500 text-blue-600 dark:text-blue-400;
+    }
+
+    .card {
+      @apply bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm;
+    }
+  </style>
+</Layout>

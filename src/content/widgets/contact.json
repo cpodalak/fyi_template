@@ -1,0 +1,44 @@
+{
+  "type": "contact",
+  "title": "Let's Connect",
+  "description": "Always open to discussing new opportunities, collaborations, and interesting projects.",
+  "methods": [
+    {
+      "type": "email",
+      "href": "mailto:your.email@example.com",
+      "label": "Email"
+    },
+    {
+      "type": "linkedin",
+      "href": "https://linkedin.com/in/yourusername",
+      "label": "LinkedIn"
+    }
+  ],
+  "organizations": [
+    {
+      "name": "Open Source Community",
+      "role": "Contributor"
+    },
+    {
+      "name": "Local Tech Meetup",
+      "role": "Organizer"
+    }
+  ],
+  "config": {
+    "email": "your.email@example.com",
+    "calendlyUrl": "https://calendly.com/yourusername",
+    "preferredMethod": "Email for detailed discussions, Calendly for quick chats",
+    "responseTime": "Usually within 24 hours",
+    "availability": "Monday-Friday, 9AM-5PM PST",
+    "cta": {
+      "primary": {
+        "text": "Send Email",
+        "href": "mailto:your.email@example.com"
+      },
+      "secondary": {
+        "text": "Schedule Call",
+        "href": "https://calendly.com/yourusername"
+      }
+    }
+  }
+}

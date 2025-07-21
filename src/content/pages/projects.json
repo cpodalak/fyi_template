@@ -1,0 +1,62 @@
+{
+  "slug": "projects",
+  "title": "Projects",
+  "description": "A showcase of my recent projects, experiments, and open-source contributions",
+  "hero": {
+    "headline": "Projects",
+    "description": "A collection of projects I've built, from personal experiments to production applications. Each project represents a learning journey and exploration of new technologies.",
+    "ctaButtons": {
+      "primary": {
+        "text": "Get In Touch",
+        "href": "/contact"
+      },
+      "secondary": {
+        "text": "View Resume",
+        "href": "/resume"
+      }
+    }
+  },
+  "sections": {
+    "categories": [
+      {"name": "All", "value": "all", "description": "Show all projects"},
+      {"name": "Web Apps", "value": "web-app", "description": "Full-stack web applications"},
+      {"name": "Tools & Utilities", "value": "tool", "description": "Developer tools and utilities"},
+      {"name": "Open Source", "value": "open-source", "description": "Open source contributions"},
+      {"name": "Experiments", "value": "experiment", "description": "Learning projects and prototypes"}
+    ],
+    "technologies": {
+      "featured": ["TypeScript", "React", "Next.js", "Astro", "Node.js", "Python", "Tailwind CSS", "PostgreSQL"]
+    },
+    "display": {
+      "layout": "grid",
+      "itemsPerPage": 12,
+      "sortBy": "featured",
+      "sortOrder": "desc",
+      "showFilters": true,
+      "showSearch": true,
+      "showStats": true
+    }
+  },
+  "quickStats": [
+    {
+      "label": "Total Projects",
+      "value": "15+",
+      "description": "Personal and professional projects"
+    },
+    {
+      "label": "Technologies Used",
+      "value": "25+",
+      "description": "Different languages and frameworks"
+    },
+    {
+      "label": "Open Source",
+      "value": "10+",
+      "description": "Public repositories and contributions"
+    },
+    {
+      "label": "Years Active",
+      "value": "8+",
+      "description": "Building software solutions"
+    }
+  ]
+}

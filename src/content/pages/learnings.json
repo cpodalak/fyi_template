@@ -1,0 +1,28 @@
+{
+  "slug": "learnings",
+  "title": "Learnings",
+  "description": "Knowledge sharing through insights, code snippets, templates, and curated reading",
+  "hero": {
+    "headline": "Learnings",
+    "description": "A collection of insights, quick wins, and resources I've gathered throughout my journey in software development and AI integration.",
+    "ctaButtons": {
+      "primary": {
+        "text": "Browse Quick Wins",
+        "href": "#insights"
+      }
+    }
+  },
+  "sections": {
+    "tabs": [
+      {"id": "insights", "label": "Insights", "description": "Quick wins and micro-learnings"},
+      {"id": "gists", "label": "Gists", "description": "Code snippets and examples"},
+      {"id": "templates", "label": "Templates", "description": "Project templates and boilerplates"},
+      {"id": "reading", "label": "Reading", "description": "Books, courses, and resources"}
+    ],
+    "searchConfig": {
+      "placeholder": "Search learnings...",
+      "filters": ["type", "tags", "category"],
+      "searchFields": ["title", "description", "content", "tags"]
+    }
+  }
+}

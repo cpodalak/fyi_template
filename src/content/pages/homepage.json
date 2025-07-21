@@ -1,0 +1,64 @@
+{
+  "slug": "homepage",
+  "title": "Welcome",
+  "description": "Personal website homepage",
+  "hero": {
+    "headline": "Hello, I'm <span class='text-blue-600 dark:text-blue-400'>Your Name</span>",
+    "subheadline": "Developer & Designer",
+    "description": "I'm a developer and designer passionate about creating elegant solutions to complex problems. Welcome to my digital space where I share my work and learnings.",
+    "ctaButtons": {
+      "primary": {
+        "text": "View My Work",
+        "href": "/projects"
+      },
+      "secondary": {
+        "text": "Read My Articles",
+        "href": "/articles"
+      }
+    }
+  },
+  "quickStats": [
+    {
+      "label": "Years Experience",
+      "value": "8+",
+      "description": "Building software solutions",
+      "icon": "calendar"
+    },
+    {
+      "label": "Projects Delivered",
+      "value": "50+",
+      "description": "From concept to production",
+      "icon": "rocket"
+    },
+    {
+      "label": "Technologies",
+      "value": "25+",
+      "description": "Languages and frameworks",
+      "icon": "code"
+    },
+    {
+      "label": "Open Source",
+      "value": "15+",
+      "description": "Contributions and projects",
+      "icon": "github"
+    }
+  ],
+  "sections": {
+    "work": {
+      "title": "Recent Work",
+      "description": "A selection of projects I've worked on recently",
+      "showMore": {
+        "text": "View All Projects",
+        "href": "/projects"
+      }
+    },
+    "writing": {
+      "title": "Latest Articles",
+      "description": "Thoughts on development, design, and technology",
+      "showMore": {
+        "text": "Read More Articles",
+        "href": "/articles"
+      }
+    }
+  }
+}
