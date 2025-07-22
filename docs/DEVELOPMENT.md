@@ -4,7 +4,8 @@ Essential development workflow and data architecture for the personal website.
 
 ## 🏗️ Architecture Overview
 
-This project follows a **data-driven architecture** with clean separation between content/data and presentation layers:
+This project follows a **data-driven architecture** with clean separation
+between content/data and presentation layers:
 
 ```
 src/
@@ -22,7 +23,8 @@ src/
 
 ## 📊 Data Layer
 
-The data layer is **completely framework-agnostic** and can be migrated to any frontend technology.
+The data layer is **completely framework-agnostic** and can be migrated to any
+frontend technology.
 
 ### Data Sources (in order of preference):
 
@@ -34,47 +36,50 @@ The data layer is **completely framework-agnostic** and can be migrated to any f
 
 ```typescript
 // Personal & Contact
-PersonalInfo, SocialLink
+(PersonalInfo, SocialLink);
 
 // Capabilities & Skills
-Capability, ExpertiseArea, TechStack
+(Capability, ExpertiseArea, TechStack);
 
 // Learning & Growth
-QuickWin, AIPrompt, BookCourse, LearningGoal
+(QuickWin, AIPrompt, BookCourse, LearningGoal);
 
 // Projects & Impact
-ImpactMetric, ProjectImpact, Achievement, TimelineEvent
+(ImpactMetric, ProjectImpact, Achievement, TimelineEvent);
 
 // Configuration
-SiteConfig, NavigationItem, PageMeta
+(SiteConfig, NavigationItem, PageMeta);
 ```
 
 ### Adding New Content:
 
 **Option 1: YAML (Recommended for content authors)**
+
 ```yaml
 # src/data/yaml/learning.yml
 quickWins:
-  - title: "New Quick Win"
-    content: "Description of the quick win"
-    tags: ["tag1", "tag2"]
-    category: "Development"
+  - title: 'New Quick Win'
+    content: 'Description of the quick win'
+    tags: ['tag1', 'tag2']
+    category: 'Development'
 ```
 
 **Option 2: TypeScript (Recommended for developers)**
+
 ```typescript
 // src/data/learning.ts
 export const quickWins: QuickWin[] = [
   {
-    title: "New Quick Win",
-    content: "Description",
-    tags: ["tag1", "tag2"],
-    category: "Development"
-  }
+    title: 'New Quick Win',
+    content: 'Description',
+    tags: ['tag1', 'tag2'],
+    category: 'Development',
+  },
 ];
 ```
 
 **Option 3: External API**
+
 ```typescript
 // src/lib/notion.ts
 export async function getQuickWins() {
@@ -138,29 +143,32 @@ The project uses a **3-tier data architecture**:
 ### Adding New Content:
 
 **For Content Authors (YAML)**:
+
 ```yaml
 # src/data/yaml/learning.yml
 quickWins:
-  - title: "Your Quick Win"
-    content: "Description here"
-    tags: ["tag1", "tag2"]
-    category: "Development"
+  - title: 'Your Quick Win'
+    content: 'Description here'
+    tags: ['tag1', 'tag2']
+    category: 'Development'
 ```
 
 **For Developers (TypeScript)**:
+
 ```typescript
 // src/data/learning.ts
 export const quickWins: QuickWin[] = [
   {
-    title: "Your Quick Win",
-    content: "Description here",
-    tags: ["tag1", "tag2"],
-    category: "Development"
-  }
+    title: 'Your Quick Win',
+    content: 'Description here',
+    tags: ['tag1', 'tag2'],
+    category: 'Development',
+  },
 ];
 ```
 
 **Using in Components**:
+
 ```astro
 ---
 // Astro component
@@ -171,9 +179,7 @@ import { yamlData } from '../data/yaml-loader.ts';
 const dataQuickWins = yamlData.learning()?.quickWins || quickWins;
 ---
 
-{dataQuickWins.map(win => (
-  <div>{win.title}</div>
-))}
+{dataQuickWins.map(win => <div>{win.title}</div>)}
 ```
 
 ### Migration Benefits:
@@ -186,7 +192,9 @@ const dataQuickWins = yamlData.learning()?.quickWins || quickWins;
 
 ## 📊 Data Layer Architecture
 
-The project uses a **framework-agnostic data layer** that completely separates content from presentation. This makes the codebase easy to maintain and enables migration to other frameworks.
+The project uses a **framework-agnostic data layer** that completely separates
+content from presentation. This makes the codebase easy to maintain and enables
+migration to other frameworks.
 
 ### 🏗️ Data Sources
 
@@ -242,12 +250,14 @@ const personal = data.personal();
 <h1>{homepageData.hero.headline}</h1>
 <p>{personal.bio}</p>
 
-{projects.map(project => (
-  <div>
-    <h3>{project.title}</h3>
-    <p>{project.description}</p>
-  </div>
-))}
+{
+  projects.map(project => (
+    <div>
+      <h3>{project.title}</h3>
+      <p>{project.description}</p>
+    </div>
+  ))
+}
 ```
 
 #### In React Components
@@ -280,17 +290,17 @@ Edit files in `src/data/yaml/` using any text editor:
 ```yaml
 # src/data/yaml/personal.yml
 personal:
-  name: "Your Name"
-  tagline: "Developer & Designer"
-  email: "you@example.com"
+  name: 'Your Name'
+  tagline: 'Developer & Designer'
+  email: 'you@example.com'
   bio: |
     Your bio here.
     Can be multi-line.
 
 social:
-  - platform: "GitHub"
-    url: "https://github.com/yourusername"
-    handle: "@yourusername"
+  - platform: 'GitHub'
+    url: 'https://github.com/yourusername'
+    handle: '@yourusername'
 ```
 
 #### Option 2: TypeScript Files
@@ -300,10 +310,10 @@ For complex data or when you need TypeScript validation:
 ```typescript
 // src/data/personal.ts
 export const personalInfo = {
-  name: "Your Name",
-  tagline: "Developer & Designer",
-  email: "you@example.com",
-  bio: "Your bio here."
+  name: 'Your Name',
+  tagline: 'Developer & Designer',
+  email: 'you@example.com',
+  bio: 'Your bio here.',
 };
 ```
 
@@ -319,7 +329,7 @@ import { MigrationHelpers } from '@/data';
 
 export async function getStaticProps() {
   return {
-    props: MigrationHelpers.getNextJSProps('homepage')
+    props: MigrationHelpers.getNextJSProps('homepage'),
   };
 }
 ```
@@ -350,7 +360,7 @@ const homepage = data.homepage();
 // Full API access
 const allData = DataAPI.exportAsJSON();
 const featured = DataAPI.getFeaturedProjects(3);
-const searchResults = DataAPI.search("typescript");
+const searchResults = DataAPI.search('typescript');
 ```
 
 #### Available Data
@@ -398,6 +408,7 @@ console.log(DataAPI.getDataSources());
 ### 📝 Adding New Content Types
 
 1. Add types to `src/data/types.ts`:
+
 ```typescript
 export interface NewContentType {
   title: string;
@@ -406,13 +417,15 @@ export interface NewContentType {
 ```
 
 2. Create YAML file `src/data/yaml/new-content.yml`:
+
 ```yaml
 items:
-  - title: "Example"
-    description: "Example description"
+  - title: 'Example'
+    description: 'Example description'
 ```
 
 3. Add loader to `src/data/yaml-loader.ts`:
+
 ```typescript
 newContent() {
   try {
@@ -424,6 +437,7 @@ newContent() {
 ```
 
 4. Add API method to `src/data/api.ts`:
+
 ```typescript
 static getNewContent() {
   return this.getCached('newContent', () => {
@@ -433,9 +447,13 @@ static getNewContent() {
 ```
 
 This architecture ensures your content is:
+
 - ✅ **Easy to author** (YAML for humans, TS for developers)
 - ✅ **Version controlled** (all content in git)
 - ✅ **Framework agnostic** (works with any frontend)
 - ✅ **Type safe** (TypeScript validation)
 - ✅ **Migration ready** (portable data layer)
-````
+
+```
+
+```

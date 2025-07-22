@@ -9,93 +9,107 @@ const { class: className } = Astro.props;
 // Current status data - update this with your real information
 const currentStatus = {
   work: {
-    title: "Senior Full Stack Developer",
-    company: "Tech Innovators Inc.",
-    status: "active",
-    since: "2023-06"
+    title: 'Senior Full Stack Developer',
+    company: 'Tech Innovators Inc.',
+    status: 'active',
+    since: '2023-06',
   },
   collaborations: [
     {
-      name: "Open Source Contrib",
-      project: "Astro Framework",
-      role: "Core Contributor",
-      status: "active",
-      url: "https://github.com/withastro/astro"
+      name: 'Open Source Contrib',
+      project: 'Astro Framework',
+      role: 'Core Contributor',
+      status: 'active',
+      url: 'https://github.com/withastro/astro',
     },
     {
-      name: "Community Project",
-      project: "DevTools Extension",
-      role: "Lead Developer",
-      status: "active",
-      url: "https://github.com/yourorg/devtools"
-    }
+      name: 'Community Project',
+      project: 'DevTools Extension',
+      role: 'Lead Developer',
+      status: 'active',
+      url: 'https://github.com/yourorg/devtools',
+    },
   ],
   learning: {
-    current: "Advanced System Design",
-    platform: "Architecture Academy",
-    progress: 65
+    current: 'Advanced System Design',
+    platform: 'Architecture Academy',
+    progress: 65,
+  },
+  availability: {
+    status: 'active',
+    note: 'Open to new opportunities',
   },
 };
 
 const getStatusColor = (status: string) => {
   switch (status) {
-    case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-    case 'selective': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-    case 'unavailable': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-    default: return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+    case 'active':
+      return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+    case 'selective':
+      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
+    case 'unavailable':
+      return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
+    default:
+      return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
   }
 };
 
 const getStatusIcon = (status: string) => {
   switch (status) {
-    case 'active': return '🟢';
-    case 'selective': return '🟡';
-    case 'unavailable': return '🔴';
-    default: return '⚪';
+    case 'active':
+      return '🟢';
+    case 'selective':
+      return '🟡';
+    case 'unavailable':
+      return '🔴';
+    default:
+      return '⚪';
   }
 };
 ---
 
 <div class={`card p-6 ${className || ''}`}>
-  <div class="flex items-start justify-between mb-6">
+  <div class='mb-6 flex items-start justify-between'>
     <div>
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-        Current Status
-      </h2>
-      <p class="text-gray-600 dark:text-gray-400 text-sm">
-        What I'm up to right now
-      </p>
+      <h2 class='mb-2 text-2xl font-bold text-gray-900 dark:text-gray-100'>Current Status</h2>
+      <p class='text-sm text-gray-600 dark:text-gray-400'>What I'm up to right now</p>
     </div>
-    <div class="flex items-center gap-2">
-      <span class="text-2xl">{getStatusIcon(currentStatus.availability.status)}</span>
-      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(currentStatus.availability.status)}`}>
+    <div class='flex items-center gap-2'>
+      <span class='text-2xl'>{getStatusIcon(currentStatus.availability.status)}</span>
+      <span
+        class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(currentStatus.availability.status)}`}
+      >
         {currentStatus.availability.status}
       </span>
     </div>
   </div>
 
   <!-- Current Work -->
-  <div class="mb-6">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
+  <div class='mb-6'>
+    <h3 class='mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-gray-100'>
       💼 Current Role
     </h3>
-    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-      <div class="flex items-start justify-between">
+    <div class='rounded-lg bg-gray-50 p-4 dark:bg-gray-800'>
+      <div class='flex items-start justify-between'>
         <div>
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100">
+          <h4 class='font-semibold text-gray-900 dark:text-gray-100'>
             {currentStatus.work.title}
           </h4>
-          <p class="text-gray-600 dark:text-gray-400 text-sm">
+          <p class='text-sm text-gray-600 dark:text-gray-400'>
             {currentStatus.work.company}
           </p>
-          <p class="text-xs text-gray-500 dark:text-gray-500 mt-1">
-            Since {new Intl.DateTimeFormat('en-US', {
-              year: 'numeric',
-              month: 'long',
-            }).format(new Date(currentStatus.work.since))}
+          <p class='mt-1 text-xs text-gray-500 dark:text-gray-500'>
+            Since {
+              new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: 'long',
+              }).format(new Date(currentStatus.work.since))
+            }
           </p>
         </div>
-        <span class={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${getStatusColor(currentStatus.work.status)}`}>
+        <span
+          class={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${getStatusColor(currentStatus.work.status)}`}
+        >
           {getStatusIcon(currentStatus.work.status)} Active
         </span>
       </div>
@@ -103,88 +117,98 @@ const getStatusIcon = (status: string) => {
   </div>
 
   <!-- Active Collaborations -->
-  <div class="mb-6">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
+  <div class='mb-6'>
+    <h3 class='mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-gray-100'>
       🤝 Active Collaborations
     </h3>
-    <div class="space-y-3">
-      {currentStatus.collaborations.map((collab) => (
-        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-          <div class="flex items-start justify-between">
-            <div class="flex-1">
-              <div class="flex items-center gap-2 mb-1">
-                <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">
-                  {collab.project}
-                </h4>
-                <span class={`inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${getStatusColor(collab.status)}`}>
-                  {getStatusIcon(collab.status)}
-                </span>
+    <div class='space-y-3'>
+      {
+        currentStatus.collaborations.map(collab => (
+          <div class='rounded-lg bg-gray-50 p-4 dark:bg-gray-800'>
+            <div class='flex items-start justify-between'>
+              <div class='flex-1'>
+                <div class='mb-1 flex items-center gap-2'>
+                  <h4 class='text-sm font-semibold text-gray-900 dark:text-gray-100'>
+                    {collab.project}
+                  </h4>
+                  <span
+                    class={`inline-flex items-center rounded px-1.5 py-0.5 text-xs font-medium ${getStatusColor(collab.status)}`}
+                  >
+                    {getStatusIcon(collab.status)}
+                  </span>
+                </div>
+                <p class='text-xs text-gray-600 dark:text-gray-400'>
+                  {collab.role} • {collab.name}
+                </p>
               </div>
-              <p class="text-gray-600 dark:text-gray-400 text-xs">
-                {collab.role} • {collab.name}
-              </p>
+              {collab.url && (
+                <a
+                  href={collab.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  class='text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
+                >
+                  View →
+                </a>
+              )}
             </div>
-            {collab.url && (
-              <a
-                href={collab.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-xs"
-              >
-                View →
-              </a>
-            )}
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 
   <!-- Current Learning -->
-  <div class="mb-6">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
+  <div class='mb-6'>
+    <h3 class='mb-3 flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-gray-100'>
       📚 Currently Learning
     </h3>
-    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-      <div class="flex items-start justify-between mb-3">
+    <div class='rounded-lg bg-gray-50 p-4 dark:bg-gray-800'>
+      <div class='mb-3 flex items-start justify-between'>
         <div>
-          <h4 class="font-semibold text-gray-900 dark:text-gray-100 text-sm">
+          <h4 class='text-sm font-semibold text-gray-900 dark:text-gray-100'>
             {currentStatus.learning.current}
           </h4>
-          <p class="text-gray-600 dark:text-gray-400 text-xs">
+          <p class='text-xs text-gray-600 dark:text-gray-400'>
             via {currentStatus.learning.platform}
           </p>
         </div>
-        <span class="text-xs text-gray-500 dark:text-gray-500">
+        <span class='text-xs text-gray-500 dark:text-gray-500'>
           {currentStatus.learning.progress}%
         </span>
       </div>
 
       <!-- Progress Bar -->
-      <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+      <div class='h-2 w-full rounded-full bg-gray-200 dark:bg-gray-700'>
         <div
-          class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+          class='h-2 rounded-full bg-blue-600 transition-all duration-300'
           style={`width: ${currentStatus.learning.progress}%`}
-        ></div>
+        >
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Availability -->
-  <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
-    <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2 flex items-center gap-2">
+  <div class='border-t border-gray-200 pt-4 dark:border-gray-700'>
+    <h3 class='mb-2 flex items-center gap-2 text-sm font-semibold text-gray-900 dark:text-gray-100'>
       📅 Availability
     </h3>
-    <p class="text-sm text-gray-600 dark:text-gray-400">
+    <p class='text-sm text-gray-600 dark:text-gray-400'>
       {currentStatus.availability.note}
     </p>
-    <div class="mt-3">
+    <div class='mt-3'>
       <a
-        href="mailto:your.email@example.com"
-        class="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors"
+        href='mailto:your.email@example.com'
+        class='inline-flex items-center gap-2 text-sm text-blue-600 transition-colors hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300'
       >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        <svg class='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            stroke-width='2'
+            d='M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+          ></path>
         </svg>
         Get in touch
       </a>
@@ -208,11 +232,12 @@ const getStatusIcon = (status: string) => {
   }
 
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 

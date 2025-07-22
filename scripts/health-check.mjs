@@ -78,7 +78,6 @@ class HealthChecker {
       } catch (error) {
         this.addIssue('Security vulnerabilities found - run `npm audit fix`');
       }
-
     } catch (error) {
       this.addIssue('Failed to read package.json');
     }
@@ -106,7 +105,6 @@ class HealthChecker {
           this.addWarning(`${Object.keys(outdatedPackages).length} outdated dependencies found`);
         }
       }
-
     } catch (error) {
       this.addWarning('Could not check dependency status');
     }
@@ -151,7 +149,7 @@ class HealthChecker {
   checkTestCoverage() {
     const testFiles = glob.sync('src/**/*.{test,spec}.{ts,tsx,js,jsx}').length;
     const sourceFiles = glob.sync('src/**/*.{ts,tsx,js,jsx}', {
-      ignore: ['src/**/*.{test,spec}.*', 'src/test/**/*']
+      ignore: ['src/**/*.{test,spec}.*', 'src/test/**/*'],
     }).length;
 
     if (testFiles === 0) {
@@ -159,9 +157,13 @@ class HealthChecker {
     } else {
       const ratio = testFiles / sourceFiles;
       if (ratio < 0.3) {
-        this.addWarning(`Low test coverage: ${testFiles} test files for ${sourceFiles} source files`);
+        this.addWarning(
+          `Low test coverage: ${testFiles} test files for ${sourceFiles} source files`
+        );
       } else {
-        this.addSuccess(`Good test coverage: ${testFiles} test files for ${sourceFiles} source files`);
+        this.addSuccess(
+          `Good test coverage: ${testFiles} test files for ${sourceFiles} source files`
+        );
       }
     }
   }
@@ -235,7 +237,10 @@ class HealthChecker {
     if (this.issues.length === 0 && this.warnings.length === 0) {
       log('🎉 Your project is in excellent health!', colors.green);
     } else if (this.issues.length === 0) {
-      log('👍 Your project is in good health with some minor improvements possible.', colors.yellow);
+      log(
+        '👍 Your project is in good health with some minor improvements possible.',
+        colors.yellow
+      );
     } else {
       log('🔧 Your project needs some attention to improve its health.', colors.red);
     }

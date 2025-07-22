@@ -1,25 +1,34 @@
 # Documentation Hub
 
-Complete documentation for the personal website project with framework-agnostic data layer.
+Complete documentation for the personal website project with framework-agnostic
+data layer.
 
 ## 📚 Documentation Overview
 
 ### 🚀 Getting Started
+
 - **[Setup Guide](SETUP.md)** - Initial project setup and installation
 - **[Development Guide](DEVELOPMENT.md)** - Developer workflow and architecture
 - **[Usage Guide](USAGE.md)** - Basic usage and commands
 
 ### 📝 Content Management
-- **[Content Management Guide](CONTENT-MANAGEMENT.md)** - Non-technical guide to editing content
-- **[Data Layer Architecture](DEVELOPMENT.md#-data-layer-architecture)** - Technical overview of the data system
+
+- **[Content Management Guide](CONTENT-MANAGEMENT.md)** - Non-technical guide to
+  editing content
+- **[Data Layer Architecture](DEVELOPMENT.md#-data-layer-architecture)** -
+  Technical overview of the data system
 
 ### 🔄 Migration & Portability
-- **[Framework Migration Guide](MIGRATION.md)** - Moving to Next.js, SvelteKit, Vue, etc.
-- **[Data Export & Import](MIGRATION.md#-migration-utilities)** - Tools for data portability
+
+- **[Framework Migration Guide](MIGRATION.md)** - Moving to Next.js, SvelteKit,
+  Vue, etc.
+- **[Data Export & Import](MIGRATION.md#-migration-utilities)** - Tools for data
+  portability
 
 ## 🏗️ Architecture Highlights
 
 ### Data Layer Benefits
+
 - ✅ **Framework Agnostic** - Use with Astro, Next.js, SvelteKit, Vue, etc.
 - ✅ **Easy Content Authoring** - YAML files for non-technical users
 - ✅ **Type Safe** - TypeScript validation and IntelliSense
@@ -27,6 +36,7 @@ Complete documentation for the personal website project with framework-agnostic 
 - ✅ **Migration Ready** - Move between frameworks without losing content
 
 ### Content Sources
+
 1. **YAML Files** (`src/data/yaml/`) - Easy editing for content authors
 2. **TypeScript Files** (`src/data/*.ts`) - Fallback for developers
 3. **Markdown Collections** (`src/content/`) - Blog-style content
@@ -36,13 +46,13 @@ Complete documentation for the personal website project with framework-agnostic 
 ```yaml
 # src/data/yaml/personal.yml
 personal:
-  name: "Your Name"
-  tagline: "Developer & Designer"
-  email: "you@example.com"
+  name: 'Your Name'
+  tagline: 'Developer & Designer'
+  email: 'you@example.com'
 
 social:
-  - platform: "GitHub"
-    url: "https://github.com/yourusername"
+  - platform: 'GitHub'
+    url: 'https://github.com/yourusername'
 ```
 
 ```astro
@@ -58,28 +68,37 @@ const personal = data.personal();
 ## 📖 Documentation Guide
 
 ### For Content Authors (Non-Technical)
-Start with the **[Content Management Guide](CONTENT-MANAGEMENT.md)**. This covers:
+
+Start with the **[Content Management Guide](CONTENT-MANAGEMENT.md)**. This
+covers:
+
 - How to edit YAML files
 - Content structure and examples
 - Common tasks and troubleshooting
 - No technical knowledge required
 
 ### For Developers
+
 Read the **[Development Guide](DEVELOPMENT.md)** which includes:
+
 - Data layer architecture
 - API reference and usage
 - Adding new content types
 - TypeScript integration
 
 ### For Framework Migration
+
 Use the **[Migration Guide](MIGRATION.md)** for:
+
 - Step-by-step migration to other frameworks
 - Framework-specific considerations
 - Data export and import tools
 - Migration utilities and helpers
 
 ### For Initial Setup
+
 Follow the **[Setup Guide](SETUP.md)** for:
+
 - Project installation
 - Environment configuration
 - Development server setup
@@ -89,14 +108,14 @@ Follow the **[Setup Guide](SETUP.md)** for:
 
 ### Common Tasks
 
-| Task | Documentation | File Location |
-|------|---------------|---------------|
-| Edit personal info | [Content Management](CONTENT-MANAGEMENT.md#personal-information-personalyml) | `src/data/yaml/personal.yml` |
-| Add new project | [Content Management](CONTENT-MANAGEMENT.md#adding-a-new-project) | `src/data/yaml/projects.yml` |
-| Change site colors | [Content Management](CONTENT-MANAGEMENT.md#colors-and-theming) | `src/data/yaml/site-config.yml` |
-| Update navigation | [Content Management](CONTENT-MANAGEMENT.md#navigation-navigationyml) | `src/data/yaml/navigation.yml` |
-| Migrate to Next.js | [Migration Guide](MIGRATION.md#nextjs-migration) | Copy `src/data/` folder |
-| Add new data type | [Development Guide](DEVELOPMENT.md#adding-new-content-types) | `src/data/types.ts` + YAML |
+| Task               | Documentation                                                                | File Location                   |
+| ------------------ | ---------------------------------------------------------------------------- | ------------------------------- |
+| Edit personal info | [Content Management](CONTENT-MANAGEMENT.md#personal-information-personalyml) | `src/data/yaml/personal.yml`    |
+| Add new project    | [Content Management](CONTENT-MANAGEMENT.md#adding-a-new-project)             | `src/data/yaml/projects.yml`    |
+| Change site colors | [Content Management](CONTENT-MANAGEMENT.md#colors-and-theming)               | `src/data/yaml/site-config.yml` |
+| Update navigation  | [Content Management](CONTENT-MANAGEMENT.md#navigation-navigationyml)         | `src/data/yaml/navigation.yml`  |
+| Migrate to Next.js | [Migration Guide](MIGRATION.md#nextjs-migration)                             | Copy `src/data/` folder         |
+| Add new data type  | [Development Guide](DEVELOPMENT.md#adding-new-content-types)                 | `src/data/types.ts` + YAML      |
 
 ### Data API Quick Reference
 
@@ -104,13 +123,13 @@ Follow the **[Setup Guide](SETUP.md)** for:
 import { data } from '@/data';
 
 // Get all data types
-const personal = data.personal();      // Personal info & social links
-const homepage = data.homepage();      // Homepage content
-const projects = data.projects();      // Project portfolio
-const navigation = data.navigation();  // Navigation menus
+const personal = data.personal(); // Personal info & social links
+const homepage = data.homepage(); // Homepage content
+const projects = data.projects(); // Project portfolio
+const navigation = data.navigation(); // Navigation menus
 const capabilities = data.capabilities(); // Skills & capabilities
-const learning = data.learning();      // Learning resources
-const widgets = data.widgets();        // Widget configurations
+const learning = data.learning(); // Learning resources
+const widgets = data.widgets(); // Widget configurations
 ```
 
 ## 🔧 Development Workflow
@@ -136,4 +155,5 @@ const widgets = data.widgets();        // Widget configurations
 
 ---
 
-**Need Help?** Start with the appropriate guide above, or check the troubleshooting sections in each document.
+**Need Help?** Start with the appropriate guide above, or check the
+troubleshooting sections in each document.

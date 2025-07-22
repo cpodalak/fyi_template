@@ -224,7 +224,7 @@ test.describe('Content Fallback Tests', () => {
       await expect(widget).toBeVisible();
 
       // Check that widget has either content or an empty state message
-      const hasContent = await widget.locator('h3, h4, p, a, button').count() > 0;
+      const hasContent = (await widget.locator('h3, h4, p, a, button').count()) > 0;
       expect(hasContent).toBe(true);
     }
   });
@@ -239,20 +239,26 @@ test.describe('Content Fallback Tests', () => {
     const bookProgress = page.locator('text=/\\d+%/'); // Progress percentage
     await expect(bookProgress.first()).toBeVisible();
 
-    const bookTags = page.locator('.inline-flex:has-text("systems"), .inline-flex:has-text("databases")');
-    if (await bookTags.count() > 0) {
+    const bookTags = page.locator(
+      '.inline-flex:has-text("systems"), .inline-flex:has-text("databases")'
+    );
+    if ((await bookTags.count()) > 0) {
       await expect(bookTags.first()).toBeVisible();
     }
 
     // Gist widget fields
-    const gistLanguage = page.locator('.inline-flex:has-text("TypeScript"), .inline-flex:has-text("CSS")');
-    if (await gistLanguage.count() > 0) {
+    const gistLanguage = page.locator(
+      '.inline-flex:has-text("TypeScript"), .inline-flex:has-text("CSS")'
+    );
+    if ((await gistLanguage.count()) > 0) {
       await expect(gistLanguage.first()).toBeVisible();
     }
 
     // Template widget fields
-    const templateCategory = page.locator('.inline-flex:has-text("Project Management"), .inline-flex:has-text("Development")');
-    if (await templateCategory.count() > 0) {
+    const templateCategory = page.locator(
+      '.inline-flex:has-text("Project Management"), .inline-flex:has-text("Development")'
+    );
+    if ((await templateCategory.count()) > 0) {
       await expect(templateCategory.first()).toBeVisible();
     }
   });

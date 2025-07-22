@@ -1,0 +1,66 @@
+{
+  "site": {
+    "title": "Your Name - Systems Engineer + AI Enabler",
+    "description": "Bridging traditional automotive/embedded expertise with AI-powered development workflows",
+    "url": "https://yoursite.com",
+    "author": "Your Name",
+    "keywords": [
+      "systems engineer",
+      "AUTOSAR",
+      "embedded systems",
+      "AI integration",
+      "automotive software",
+      "typescript",
+      "astro"
+    ]
+  },
+  "theme": {
+    "defaultTheme": "system",
+    "colors": {
+      "primary": "#2563eb",
+      "secondary": "#64748b",
+      "accent": "#7c3aed"
+    }
+  },
+  "navigation": {
+    "header": [
+      {
+        "label": "Capability Matrix",
+        "href": "/resume",
+        "description": "Skills overview with milestones and experiences"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects",
+        "description": "Featured work and case studies"
+      },
+      {
+        "label": "Articles",
+        "href": "/articles",
+        "description": "Technical writing and insights"
+      },
+      {
+        "label": "Learning",
+        "href": "/learnings",
+        "description": "Knowledge sharing and resources"
+      }
+    ],
+    "footer": [
+      {
+        "label": "RSS",
+        "href": "/rss.xml",
+        "external": false
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/yourusername",
+        "external": true
+      }
+    ]
+  },
+  "features": {
+    "rss": true,
+    "sitemap": true,
+    "analytics": false
+  }
+}

@@ -82,7 +82,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
-    "@lhci/cli": "^0.13.0",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.40.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.2.0",
@@ -92,8 +92,8 @@
     "@types/react-dom": "^19.1.6",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
-    "@vitest/coverage-v8": "^1.1.0",
-    "@vitest/ui": "^1.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.56.0",
@@ -104,7 +104,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-vitest": "^0.3.20",
-    "happy-dom": "^12.10.3",
+    "happy-dom": "^18.0.1",
     "husky": "^8.0.3",
     "jsdom": "^23.0.1",
     "lint-staged": "^15.2.0",
@@ -114,7 +114,7 @@
     "prettier-plugin-tailwindcss": "^0.5.9",
     "semantic-release": "^22.0.12",
     "typescript": "^5.8.3",
-    "vitest": "^1.1.0"
+    "vitest": "^3.2.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": [

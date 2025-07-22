@@ -157,7 +157,7 @@ Options:
 }
 
 function main() {
-  const [,, type, title, description, tagsString, ...urls] = process.argv;
+  const [, , type, title, description, tagsString, ...urls] = process.argv;
 
   if (!type || type === 'help') {
     showHelp();

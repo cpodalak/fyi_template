@@ -17,41 +17,50 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 ---
 
 <article class={`card p-6 group ${featured ? 'ring-2 ring-gray-200 dark:ring-gray-700' : ''}`}>
-  <div class="flex flex-col h-full">
+  <div class='flex h-full flex-col'>
     <!-- Article metadata -->
-    <div class="flex items-center justify-between mb-3">
-      <time class="text-sm text-gray-500 dark:text-gray-400" datetime={publishDate.toISOString()}>
+    <div class='mb-3 flex items-center justify-between'>
+      <time
+        class='text-sm text-gray-500 dark:text-gray-400'
+        datetime={new Date(publishDate).toISOString()}
+      >
         {formattedDate}
       </time>
-      {featured && (
-        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-          Featured
-        </span>
-      )}
+      {
+        featured && (
+          <span class='inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200'>
+            Featured
+          </span>
+        )
+      }
     </div>
 
     <!-- Article title -->
-    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-      <a href={`/articles/${article.slug}`} class="after:absolute after:inset-0">
+    <h3
+      class='mb-3 text-xl font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-blue-400'
+    >
+      <a href={`/articles/${article.slug}`} class='after:absolute after:inset-0'>
         {title}
       </a>
     </h3>
 
     <!-- Article description -->
-    <p class="text-gray-600 dark:text-gray-400 mb-4 flex-1 line-clamp-3">
+    <p class='mb-4 line-clamp-3 flex-1 text-gray-600 dark:text-gray-400'>
       {description}
     </p>
 
     <!-- Tags -->
-    {tags.length > 0 && (
-      <div class="flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
+    {
+      tags.length > 0 && (
+        <div class='flex flex-wrap gap-2'>
+          {tags.map(tag => (
+            <span class='inline-flex items-center rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
   </div>
 </article>
 

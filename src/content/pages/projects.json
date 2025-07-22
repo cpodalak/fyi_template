@@ -18,11 +18,11 @@
   },
   "sections": {
     "categories": [
-      {"name": "All", "value": "all", "description": "Show all projects"},
-      {"name": "Web Apps", "value": "web-app", "description": "Full-stack web applications"},
-      {"name": "Tools & Utilities", "value": "tool", "description": "Developer tools and utilities"},
-      {"name": "Open Source", "value": "open-source", "description": "Open source contributions"},
-      {"name": "Experiments", "value": "experiment", "description": "Learning projects and prototypes"}
+      { "name": "All", "value": "all", "description": "Show all projects" },
+      { "name": "Web Apps", "value": "web-app", "description": "Full-stack web applications" },
+      { "name": "Tools & Utilities", "value": "tool", "description": "Developer tools and utilities" },
+      { "name": "Open Source", "value": "open-source", "description": "Open source contributions" },
+      { "name": "Experiments", "value": "experiment", "description": "Learning projects and prototypes" }
     ],
     "technologies": {
       "featured": ["TypeScript", "React", "Next.js", "Astro", "Node.js", "Python", "Tailwind CSS", "PostgreSQL"]

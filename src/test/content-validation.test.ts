@@ -185,7 +185,7 @@ describe('Content Field Usage Validation', () => {
       'ReadingWidget.astro',
       'GistsWidget.astro',
       'TemplatesWidget.astro',
-      'ContactWidget.astro'
+      'ContactWidget.astro',
     ];
 
     widgetFiles.forEach(widgetFile => {
@@ -211,7 +211,7 @@ describe('Content Field Usage Validation', () => {
       { path: 'widgets/templates.json', requiredFields: ['featured'] },
       { path: 'widgets/contact.json', requiredFields: ['title', 'methods'] },
       { path: 'config/site.json', requiredFields: ['navigation'] },
-      { path: 'profile/main.json', requiredFields: ['name'] }
+      { path: 'profile/main.json', requiredFields: ['name'] },
     ];
 
     contentFiles.forEach(({ path: filePath, requiredFields }) => {
@@ -232,7 +232,7 @@ describe('Content Field Usage Validation', () => {
       'ReadingWidget.astro',
       'GistsWidget.astro',
       'TemplatesWidget.astro',
-      'ContactWidget.astro'
+      'ContactWidget.astro',
     ];
 
     widgetFiles.forEach(widgetFile => {

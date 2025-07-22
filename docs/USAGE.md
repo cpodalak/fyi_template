@@ -5,7 +5,9 @@ How to customize, deploy, and maintain your site.
 ## 🎨 Customization
 
 ### Personal Information
+
 Update these files with your details:
+
 - `src/pages/index.astro` - Homepage content
 - `src/pages/resume.astro` - Professional experience
 - `src/components/Header.astro` - Navigation and name
@@ -13,10 +15,12 @@ Update these files with your details:
 - `package.json` - Author and repository info
 
 ### Content
+
 - **Articles**: Add Markdown files to `src/content/articles/`
 - **Projects**: Add Markdown files to `src/content/projects/`
 
 ### Notion Integration (Optional)
+
 1. Create a Notion database
 2. Get API key from [Notion Developers](https://developers.notion.com/)
 3. Add to `.env`:
@@ -28,6 +32,7 @@ Update these files with your details:
 ## 🚀 Deployment
 
 ### Automatic (Recommended)
+
 Push to `main` branch → Site deploys automatically to GitHub Pages
 
 ```bash
@@ -37,6 +42,7 @@ git push origin main
 ```
 
 ### Manual/Emergency
+
 Go to **Actions** → **Fast Deploy** → **Run workflow**
 
 ## 🌐 Custom Domain (Optional)
@@ -46,12 +52,14 @@ Go to **Actions** → **Fast Deploy** → **Run workflow**
    - Enter your domain (e.g., `example.com`)
 
 2. **Update workflow:**
+
    ```yaml
    # In .github/workflows/ci-cd.yml, uncomment:
    cname: yourdomain.com
    ```
 
 3. **Configure DNS:**
+
    ```
    # A records for apex domain (example.com)
    185.199.108.153
@@ -72,11 +80,13 @@ Go to **Actions** → **Fast Deploy** → **Run workflow**
 ## 🆘 Troubleshooting
 
 **Site not updating?**
+
 1. Check GitHub Actions for errors
 2. Clear browser cache
 3. Wait ~10 minutes for GitHub's CDN
 
 **Build failing?**
+
 1. Check Actions logs
 2. Run `npm run validate` locally
 3. Fix errors and push again

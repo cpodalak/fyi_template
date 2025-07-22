@@ -1,0 +1,255 @@
+{
+  "categories": {
+    "technical": {
+      "name": "Technical Foundation",
+      "description": "Core technical skills and expertise",
+      "color": "blue"
+    },
+    "ai": {
+      "name": "AI Integration",
+      "description": "AI-enhanced development and workflows",
+      "color": "purple"
+    },
+    "leadership": {
+      "name": "Leadership & Collaboration",
+      "description": "Team leadership and communication skills",
+      "color": "green"
+    },
+    "domain": {
+      "name": "Domain Expertise",
+      "description": "Industry and domain-specific knowledge",
+      "color": "orange"
+    }
+  },
+  "skills": [
+    {
+      "name": "AUTOSAR/Embedded Systems",
+      "level": 5,
+      "category": "technical",
+      "description": "Deep expertise in automotive software architecture",
+      "years": 10,
+      "featured": true,
+      "tags": ["AUTOSAR", "Embedded", "Automotive", "Real-time"],
+      "milestones": [
+        {
+          "year": 2015,
+          "title": "AUTOSAR Classic Platform Certification",
+          "description": "Completed comprehensive AUTOSAR training and certification",
+          "type": "certification"
+        },
+        {
+          "year": 2017,
+          "title": "Lead Architect - ECU Software Stack",
+          "description": "Led design and implementation of multi-core ECU software architecture",
+          "type": "project",
+          "impact": "Reduced system boot time by 40%"
+        },
+        {
+          "year": 2020,
+          "title": "AUTOSAR Adaptive Platform Migration",
+          "description": "Successfully migrated legacy systems to Adaptive Platform",
+          "type": "achievement",
+          "impact": "Enabled OTA updates and cloud connectivity"
+        }
+      ],
+      "experiences": [
+        {
+          "project": "Advanced Driver Assistance Systems",
+          "role": "Technical Lead",
+          "duration": "2018-2020",
+          "description": "Developed safety-critical ADAS components using AUTOSAR",
+          "technologies": ["AUTOSAR Classic", "C++", "MISRA-C", "CAN/LIN"],
+          "achievements": [
+            "ASIL-D certified radar processing module",
+            "99.9% uptime in field testing",
+            "Team of 8 engineers"
+          ]
+        },
+        {
+          "project": "Connected Vehicle Platform",
+          "role": "Architecture Consultant",
+          "duration": "2021-2023",
+          "description": "Designed cloud-native vehicle data processing architecture",
+          "technologies": ["AUTOSAR Adaptive", "DDS", "Docker", "Kubernetes"],
+          "achievements": [
+            "Processed 1M+ vehicle data points daily",
+            "Sub-100ms latency for critical alerts",
+            "ISO 27001 security compliance"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "C/C++ Systems Programming",
+      "level": 5,
+      "category": "technical",
+      "description": "Low-level systems and performance optimization",
+      "years": 12,
+      "featured": true,
+      "tags": ["C++", "Systems Programming", "Performance", "Memory Management"],
+      "milestones": [
+        {
+          "year": 2014,
+          "title": "Real-time Engine Control Module",
+          "description": "Developed high-performance ECU software with <10ms response time",
+          "type": "project",
+          "impact": "Improved fuel efficiency by 15%"
+        },
+        {
+          "year": 2019,
+          "title": "Memory Management Optimization",
+          "description": "Redesigned memory allocation strategy for embedded systems",
+          "type": "achievement",
+          "impact": "Reduced memory footprint by 30%"
+        }
+      ],
+      "experiences": [
+        {
+          "project": "Next-Gen Powertrain Control Unit",
+          "role": "Senior Software Engineer",
+          "duration": "2016-2018",
+          "description": "Developed safety-critical software for hybrid vehicle powertrain control",
+          "technologies": ["C++14", "MISRA-C", "FreeRTOS", "CAN", "FlexRay"],
+          "achievements": [
+            "Zero defects in 2 years of field deployment",
+            "ASIL-C certified software components",
+            "30% faster execution than previous generation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Safety-Critical Systems (ISO 26262)",
+      "level": 4,
+      "category": "technical",
+      "description": "Functional safety and ASIL development",
+      "years": 8,
+      "featured": true,
+      "tags": ["ISO 26262", "Functional Safety", "ASIL", "Risk Assessment"]
+    },
+    {
+      "name": "DevOps & CI/CD",
+      "level": 4,
+      "category": "technical",
+      "description": "Modern deployment and automation practices",
+      "years": 6,
+      "tags": ["DevOps", "CI/CD", "Docker", "Kubernetes", "Automation"]
+    },
+    {
+      "name": "Prompt Engineering",
+      "level": 4,
+      "category": "ai",
+      "description": "Creating effective AI-human collaboration workflows",
+      "years": 2,
+      "featured": true,
+      "tags": ["LLMs", "GPT", "Claude", "Prompt Design", "AI Workflows"],
+      "milestones": [
+        {
+          "year": 2023,
+          "title": "AI-Powered Development Workflow",
+          "description": "Implemented company-wide AI coding assistant integration",
+          "type": "achievement",
+          "impact": "40% increase in development velocity"
+        },
+        {
+          "year": 2024,
+          "title": "Custom GPT Models for Domain Tasks",
+          "description": "Created specialized models for automotive compliance checking",
+          "type": "project",
+          "impact": "Reduced manual review time by 60%"
+        }
+      ],
+      "experiences": [
+        {
+          "project": "AI-Enhanced Code Review System",
+          "role": "Technical Lead",
+          "duration": "2023-2024",
+          "description": "Built AI system for automated code quality and compliance checks",
+          "technologies": ["OpenAI API", "Claude", "Python", "React"],
+          "achievements": [
+            "Processed 10K+ code reviews",
+            "95% accuracy in bug detection",
+            "Integrated with existing CI/CD pipeline"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Code Generation & Review",
+      "level": 5,
+      "category": "ai",
+      "description": "AI-assisted development and quality assurance",
+      "years": 2,
+      "featured": true,
+      "tags": ["Code Generation", "AI Review", "GitHub Copilot", "Quality Assurance"]
+    },
+    {
+      "name": "Documentation Automation",
+      "level": 4,
+      "category": "ai",
+      "description": "Automated technical writing and knowledge management",
+      "years": 1,
+      "tags": ["Documentation", "Knowledge Management", "Automation", "Technical Writing"]
+    },
+    {
+      "name": "AI Tool Integration",
+      "level": 4,
+      "category": "ai",
+      "description": "Seamless integration of AI tools in traditional workflows",
+      "years": 2,
+      "tags": ["Tool Integration", "Workflow Automation", "AI APIs", "Process Optimization"]
+    },
+    {
+      "name": "Technical Mentoring",
+      "level": 4,
+      "category": "leadership",
+      "description": "Guiding teams through complex technical challenges",
+      "years": 8,
+      "featured": true,
+      "tags": ["Mentoring", "Leadership", "Knowledge Transfer", "Team Development"]
+    },
+    {
+      "name": "Cross-functional Collaboration",
+      "level": 5,
+      "category": "leadership",
+      "description": "Bridging technical and business requirements",
+      "years": 10,
+      "featured": true,
+      "tags": ["Collaboration", "Communication", "Stakeholder Management", "Agile"]
+    },
+    {
+      "name": "Knowledge Transfer",
+      "level": 5,
+      "category": "leadership",
+      "description": "Creating comprehensive documentation and training",
+      "years": 10,
+      "tags": ["Documentation", "Training", "Process Documentation", "Best Practices"]
+    },
+    {
+      "name": "Automotive Industry",
+      "level": 5,
+      "category": "domain",
+      "description": "Deep understanding of automotive development lifecycle",
+      "years": 10,
+      "featured": true,
+      "tags": ["Automotive", "V-Model", "Supplier Management", "OEM Processes"]
+    },
+    {
+      "name": "Modern Web Development",
+      "level": 4,
+      "category": "domain",
+      "description": "Full-stack development with modern frameworks",
+      "years": 5,
+      "featured": true,
+      "tags": ["React", "TypeScript", "Node.js", "Full-stack", "Web APIs"]
+    },
+    {
+      "name": "Open Source Contribution",
+      "level": 4,
+      "category": "domain",
+      "description": "Active contributor to community projects",
+      "years": 6,
+      "tags": ["Open Source", "Community", "Collaboration", "Git", "GitHub"]
+    }
+  ]
+}

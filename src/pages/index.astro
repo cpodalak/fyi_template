@@ -3,23 +3,25 @@ import Layout from '../components/Layout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import StatusTile from '../components/StatusTile.astro';
-import ReadingWidget from '../components/ReadingWidget.astro';
-import GistsWidget from '../components/GistsWidget.astro';
-import TemplatesWidget from '../components/TemplatesWidget.astro';
-import ContactWidget from '../components/ContactWidget.astro';
+import CompactCapabilityMatrix from '../components/CompactCapabilityMatrix';
 import { getCollection, getEntry } from 'astro:content';
 
-// Get data from content collections
+// Get data from simplified content collections
 const homepageData = await getEntry('pages', 'homepage');
 const profileData = await getEntry('profile', 'main');
-const siteConfig = await getEntry('config', 'site');
+const siteData = await getEntry('data', 'site');
+const skillsData = await getEntry('data', 'skills');
 
 // Get featured content from collections
 const allArticles = await getCollection('articles');
 const featuredArticles = allArticles
   .filter(article => article.data.featured && !article.data.draft)
-  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-  .slice(0, 3);
+  .sort((a, b) => {
+    const aDate = new Date(a.data.publishDate);
+    const bDate = new Date(b.data.publishDate);
+    return bDate.valueOf() - aDate.valueOf();
+  })
+  .slice(0, 2); // Reduced from 3 to 2
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects
@@ -29,36 +31,51 @@ const featuredProjects = allProjects
 
 // Get quick stats for homepage
 const quickStats = homepageData?.data.quickStats || [];
+
+// Get featured skills for compact display
+const featuredSkills =
+  (skillsData?.data as any)?.skills?.filter((skill: any) => skill.featured) || [];
 ---
 
-<Layout title={siteConfig?.data.site.title || `${profileData?.data.name} - Developer & Designer`}>
+---
+
+<Layout
+  title={(siteData?.data as any)?.site?.title ||
+    `${profileData?.data?.name} - Systems Engineer + AI Enabler`}
+>
   <!-- Hero Section -->
-  <section class="py-20 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+  <section class='px-4 py-20 sm:px-6 lg:px-8'>
+    <div class='mx-auto max-w-6xl'>
+      <div class='grid grid-cols-1 items-center gap-12 lg:grid-cols-3'>
         <!-- Main Hero Content -->
-        <div class="lg:col-span-2 text-center lg:text-left">
-          <div class="animate-fade-in">
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-              <Fragment set:html={homepageData?.data.hero.headline} />
+        <div class='text-center lg:col-span-2 lg:text-left'>
+          <div class='animate-fade-in'>
+            <h1
+              class='mb-6 text-4xl font-bold text-gray-900 dark:text-gray-100 sm:text-5xl lg:text-6xl'
+            >
+              <Fragment set:html={homepageData?.data?.hero?.headline} />
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto lg:mx-0 leading-relaxed">
-              {homepageData?.data.hero.description}
+            <p
+              class='mx-auto mb-8 max-w-3xl text-xl leading-relaxed text-gray-600 dark:text-gray-400 sm:text-2xl lg:mx-0'
+            >
+              {homepageData?.data?.hero?.description}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-              <a href={homepageData?.data.hero.ctaButtons.primary.href} class="btn-primary">
-                {homepageData?.data.hero.ctaButtons.primary.text}
+            <div
+              class='flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start'
+            >
+              <a href={homepageData?.data?.hero?.ctaButtons?.primary?.href} class='btn-primary'>
+                {homepageData?.data?.hero?.ctaButtons?.primary?.text}
               </a>
-              <a href={homepageData?.data.hero.ctaButtons.secondary.href} class="btn-secondary">
-                {homepageData?.data.hero.ctaButtons.secondary.text}
+              <a href={homepageData?.data?.hero?.ctaButtons?.secondary?.href} class='btn-secondary'>
+                {homepageData?.data?.hero?.ctaButtons?.secondary?.text}
               </a>
             </div>
           </div>
         </div>
 
         <!-- Status Tile -->
-        <div class="lg:col-span-1">
-          <div class="animate-slide-up">
+        <div class='lg:col-span-1'>
+          <div class='animate-slide-up'>
             <StatusTile />
           </div>
         </div>
@@ -67,135 +84,132 @@ const quickStats = homepageData?.data.quickStats || [];
   </section>
 
   <!-- Quick Stats Section -->
-  {quickStats.length > 0 && (
-    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950 border-y border-gray-200 dark:border-gray-800">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {quickStats.map((stat: any) => (
-            <div class="text-center">
-              <div class="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {stat.value}
+  {
+    quickStats.length > 0 && (
+      <section class='border-y border-gray-200 bg-white px-4 py-12 dark:border-gray-800 dark:bg-gray-950 sm:px-6 lg:px-8'>
+        <div class='mx-auto max-w-6xl'>
+          <div class='grid grid-cols-2 gap-8 md:grid-cols-4'>
+            {quickStats.map((stat: any) => (
+              <div class='text-center'>
+                <div class='mb-2 text-3xl font-bold text-blue-600 dark:text-blue-400 sm:text-4xl'>
+                  {stat.value}
+                </div>
+                <div class='mb-1 text-sm font-medium text-gray-900 dark:text-gray-100'>
+                  {stat.label}
+                </div>
+                <div class='text-xs text-gray-600 dark:text-gray-400'>{stat.description}</div>
               </div>
-              <div class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
-                {stat.label}
-              </div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">
-                {stat.description}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
+
+  <!-- Capability Matrix Section -->
+  {
+    featuredSkills.length > 0 && (
+      <section class='px-4 py-16 sm:px-6 lg:px-8'>
+        <div class='mx-auto max-w-6xl'>
+          <div class='mb-12 text-center'>
+            <h2 class='mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl'>
+              Capability Matrix
+            </h2>
+            <p class='mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400'>
+              Core skills and expertise areas showcasing technical depth and breadth •{' '}
+              <a href='/resume' class='text-blue-600 hover:underline dark:text-blue-400'>
+                Explore full matrix with milestones →
+              </a>
+            </p>
+          </div>
+          <CompactCapabilityMatrix capabilities={featuredSkills} client:load />
+        </div>
+      </section>
+    )
+  }
 
   <!-- Featured Projects Section -->
-  {featuredProjects.length > 0 && (
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            {homepageData?.data.sections?.work?.title || "Featured Projects"}
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {homepageData.sections?.work?.description || "A selection of projects I'm particularly proud of, showcasing different aspects of my development skills."}
-          </p>
-        </div>
+  {
+    featuredProjects.length > 0 && (
+      <section class='bg-gray-50 px-4 py-16 dark:bg-gray-900/50 sm:px-6 lg:px-8'>
+        <div class='mx-auto max-w-6xl'>
+          <div class='mb-12 text-center'>
+            <h2 class='mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl'>
+              {homepageData?.data?.sections?.work?.title || 'Featured Projects'}
+            </h2>
+            <p class='mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400'>
+              {homepageData?.data?.sections?.work?.description ||
+                "A selection of projects I'm particularly proud of, showcasing different aspects of my development skills."}
+            </p>
+          </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project: any) => (
-            <div class="animate-slide-up">
-              <ProjectCard project={project} featured={true} />
-            </div>
-          ))}
-        </div>
+          <div class='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
+            {featuredProjects.map((project: any) => (
+              <div class='animate-slide-up'>
+                <ProjectCard project={project} featured={true} />
+              </div>
+            ))}
+          </div>
 
-        <div class="text-center mt-12">
-          <a href="/projects" class="btn-secondary">
-            {homepageData.sections?.work?.showMore?.text || "View All Projects"}
-          </a>
+          <div class='mt-12 text-center'>
+            <a href='/projects' class='btn-secondary'>
+              {homepageData?.data?.sections?.work?.showMore?.text || 'View All Projects'}
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- Featured Articles Section -->
-  {featuredArticles.length > 0 && (
-    <section class="py-16 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            {homepageData.sections?.writing?.title || "Latest Articles"}
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {homepageData.sections?.writing?.description || "Thoughts, tutorials, and insights from my journey in development and design."}
-          </p>
+  {
+    featuredArticles.length > 0 && (
+      <section class='px-4 py-16 sm:px-6 lg:px-8'>
+        <div class='mx-auto max-w-6xl'>
+          <div class='mb-12 text-center'>
+            <h2 class='mb-4 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl'>
+              {homepageData?.data?.sections?.writing?.title || 'Latest Articles'}
+            </h2>
+            <p class='mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400'>
+              {homepageData?.data?.sections?.writing?.description ||
+                'Thoughts, tutorials, and insights from my journey in development and design.'}
+            </p>
+          </div>
+
+          <div class='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
+            {featuredArticles.map(article => (
+              <div class='animate-slide-up'>
+                <ArticleCard article={article} featured={true} />
+              </div>
+            ))}
+          </div>
+
+          <div class='mt-12 text-center'>
+            <a href='/articles' class='btn-secondary'>
+              Read All Articles
+            </a>
+          </div>
         </div>
+      </section>
+    )
+  }
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredArticles.map((article) => (
-            <div class="animate-slide-up">
-              <ArticleCard article={article} featured={true} />
-            </div>
-          ))}
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="/articles" class="btn-secondary">
-            Read All Articles
-          </a>
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Widgets Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          My Digital Toolkit
-        </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Explore my curated collection of insights, prompts, templates, and resources.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <ReadingWidget />
-        <GistsWidget />
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <TemplatesWidget />
-        <ContactWidget />
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">
-        About Me
+  <!-- Call to Action Section -->
+  <section class='bg-gray-50 px-4 py-16 dark:bg-gray-900/50 sm:px-6 lg:px-8'>
+    <div class='mx-auto max-w-4xl text-center'>
+      <h2 class='mb-6 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl'>
+        Let's Connect
       </h2>
-      <div class="prose prose-lg prose-gray dark:prose-invert mx-auto">
-        <p>
-          I'm a full-stack developer with a passion for creating beautiful, functional web applications.
-          My journey in tech spans frontend development, backend architecture, and everything in between.
-        </p>
-        <p>
-          When I'm not coding, you'll find me exploring new technologies, contributing to open source,
-          or sharing what I've learned through writing and speaking.
-        </p>
-      </div>
-      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/resume" class="btn-primary">
-          View Resume
-        </a>
-        <a href="/learnings" class="btn-secondary">
-          My Learning Journey
-        </a>
+      <p class='mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-400'>
+        {
+          profileData?.data.bio ||
+            'Bridging traditional automotive/embedded expertise with AI-powered development workflows.'
+        }
+      </p>
+      <div class='flex flex-col justify-center gap-4 sm:flex-row'>
+        <a href='/projects' class='btn-primary'> View My Work</a>
+        <a href='/learnings' class='btn-secondary'> Explore My Toolkit</a>
+        <a href={`mailto:${profileData?.data.email}`} class='btn-secondary'> Get In Touch</a>
       </div>
     </div>
   </section>

@@ -32,10 +32,14 @@ declare global {
 globalThis.testUtils = {
   createMockComponent: (name: string) => {
     return ({ children, ...props }: any) => {
-      return React.createElement('div', {
-        'data-testid': name,
-        ...props,
-      }, children);
+      return React.createElement(
+        'div',
+        {
+          'data-testid': name,
+          ...props,
+        },
+        children
+      );
     };
   },
 };

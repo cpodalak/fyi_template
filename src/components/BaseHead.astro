@@ -8,61 +8,55 @@ export interface Props {
 
 const { title, description, image, canonicalURL } = Astro.props;
 
-const makeTitle = title
-  ? title + " | " + "Your Name"
-  : "Your Name - Developer & Designer";
+const makeTitle = title ? title + ' | ' + 'Your Name' : 'Your Name - Developer & Designer';
 
 const makeDescription = description
   ? description
-  : "Personal website of Your Name - developer, designer, and learner.";
+  : 'Personal website of Your Name - developer, designer, and learner.';
 
-const makeImage = image
-  ? new URL(image, Astro.url).href
-  : new URL("/og-image.png", Astro.url).href;
+const makeImage = image ? new URL(image, Astro.url).href : new URL('/og-image.png', Astro.url).href;
 
-const makeCanonical = canonicalURL
-  ? canonicalURL
-  : new URL(Astro.url.pathname, Astro.site).href;
+const makeCanonical = canonicalURL ? canonicalURL : new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content={makeDescription} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset='UTF-8' />
+    <meta name='description' content={makeDescription} />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href={makeCanonical} />
+    <link rel='canonical' href={makeCanonical} />
 
     <!-- Primary Meta Tags -->
     <title>{makeTitle}</title>
-    <meta name="title" content={makeTitle} />
-    <meta name="description" content={makeDescription} />
+    <meta name='title' content={makeTitle} />
+    <meta name='description' content={makeDescription} />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={makeCanonical} />
-    <meta property="og:title" content={makeTitle} />
-    <meta property="og:description" content={makeDescription} />
-    <meta property="og:image" content={makeImage} />
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={makeCanonical} />
+    <meta property='og:title' content={makeTitle} />
+    <meta property='og:description' content={makeDescription} />
+    <meta property='og:image' content={makeImage} />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={makeCanonical} />
-    <meta property="twitter:title" content={makeTitle} />
-    <meta property="twitter:description" content={makeDescription} />
-    <meta property="twitter:image" content={makeImage} />
+    <meta property='twitter:card' content='summary_large_image' />
+    <meta property='twitter:url' content={makeCanonical} />
+    <meta property='twitter:title' content={makeTitle} />
+    <meta property='twitter:description' content={makeDescription} />
+    <meta property='twitter:image' content={makeImage} />
 
     <!-- Theme -->
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name='color-scheme' content='light dark' />
+    <meta name='theme-color' content='#ffffff' />
 
     <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 
     <!-- Dark mode script (inline to prevent flash) -->
     <script is:inline>
@@ -82,7 +76,10 @@ const makeCanonical = canonicalURL
           const isDark = document.documentElement.classList.contains('dark');
           localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
-        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['class'],
+        });
       }
     </script>
   </head>

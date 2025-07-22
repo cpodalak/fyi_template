@@ -33,7 +33,7 @@ const yamlFiles = [
   'navigation.yml',
   'projects.yml',
   'widgets.yml',
-  'learning.yml'
+  'learning.yml',
 ];
 
 yamlFiles.forEach(file => {

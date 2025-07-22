@@ -1,16 +1,20 @@
 ---
-title: "Task Management Dashboard"
-description: "A React-based task management application with drag-and-drop functionality, real-time updates, and team collaboration features."
-tags: ["react", "typescript", "firebase", "tailwind"]
-githubUrl: "https://github.com/yourusername/task-dashboard"
-liveUrl: "https://task-dashboard-demo.com"
+title: 'Task Management Dashboard'
+description:
+  'A React-based task management application with drag-and-drop functionality,
+  real-time updates, and team collaboration features.'
+tags: ['react', 'typescript', 'firebase', 'tailwind']
+githubUrl: 'https://github.com/yourusername/task-dashboard'
+liveUrl: 'https://task-dashboard-demo.com'
 featured: false
 order: 2
 ---
 
 # Task Management Dashboard
 
-A comprehensive task management solution built for modern teams. Features drag-and-drop functionality, real-time collaboration, and intuitive project organization.
+A comprehensive task management solution built for modern teams. Features
+drag-and-drop functionality, real-time collaboration, and intuitive project
+organization.
 
 ## Key Features
 
@@ -22,9 +26,12 @@ A comprehensive task management solution built for modern teams. Features drag-a
 
 ## Technical Implementation
 
-Built with React and TypeScript for a robust, type-safe codebase. Firebase provides real-time database functionality and authentication, while Tailwind CSS ensures a consistent, modern design.
+Built with React and TypeScript for a robust, type-safe codebase. Firebase
+provides real-time database functionality and authentication, while Tailwind CSS
+ensures a consistent, modern design.
 
-The drag-and-drop functionality is implemented using React DnD, providing smooth interactions and accessibility features.
+The drag-and-drop functionality is implemented using React DnD, providing smooth
+interactions and accessibility features.
 
 ## Challenges Solved
 

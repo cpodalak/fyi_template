@@ -14,10 +14,10 @@
   },
   "sections": {
     "tabs": [
-      {"id": "insights", "label": "Insights", "description": "Quick wins and micro-learnings"},
-      {"id": "gists", "label": "Gists", "description": "Code snippets and examples"},
-      {"id": "templates", "label": "Templates", "description": "Project templates and boilerplates"},
-      {"id": "reading", "label": "Reading", "description": "Books, courses, and resources"}
+      { "id": "insights", "label": "Insights", "description": "Quick wins and micro-learnings" },
+      { "id": "gists", "label": "Gists", "description": "Code snippets and examples" },
+      { "id": "templates", "label": "Templates", "description": "Project templates and boilerplates" },
+      { "id": "reading", "label": "Reading", "description": "Books, courses, and resources" }
     ],
     "searchConfig": {
       "placeholder": "Search learnings...",

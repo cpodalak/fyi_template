@@ -11,7 +11,7 @@ export async function GET(context) {
     title: 'Your Name - Articles',
     description: 'Thoughts, tutorials, and insights about web development, design, and technology.',
     site: context.site,
-    items: publishedArticles.map((article) => ({
+    items: publishedArticles.map(article => ({
       title: article.data.title,
       description: article.data.description,
       pubDate: article.data.publishDate,

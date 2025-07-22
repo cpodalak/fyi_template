@@ -1,5 +1,5 @@
 ---
-import ThemeToggle from './ThemeToggle.tsx';
+import ThemeToggle from './ThemeToggle';
 import { getEntry } from 'astro:content';
 
 interface Props {
@@ -8,19 +8,18 @@ interface Props {
 
 const { class: className } = Astro.props;
 
-// Get navigation data from content collections
-const siteConfig = await getEntry('config', 'site');
+// Get navigation data from simplified content collections
+const siteData = await getEntry('data', 'site');
 const profileData = await getEntry('profile', 'main');
 
-// Default navigation items if not available in content
-const defaultNavigation = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/learnings', label: 'Learnings' },
-  { href: '/resume', label: 'Resume' },
-  { href: '/articles', label: 'Articles' }
+// Simplified navigation - only essential pages
+const navigation = (siteData?.data as any)?.navigation?.header || [
+  { href: '/resume', label: 'Capability Matrix', description: 'Skillset overview with milestones and experiences' },
+  { href: '/projects', label: 'Projects', description: 'Featured work' },
+  { href: '/learnings', label: 'Toolkit', description: 'Knowledge & resources' },
+  { href: '/articles', label: 'Articles', description: 'Technical writing' },
 ];
 
-const navigation = siteConfig?.data?.navigation?.header || defaultNavigation;
 const siteName = profileData?.data?.name || 'Your Name';
 ---
 
@@ -40,7 +39,7 @@ const siteName = profileData?.data?.name || 'Your Name';
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
 
-    navLinks.forEach((link) => {
+    navLinks.forEach(link => {
       const href = link.getAttribute('href');
       if (href && currentPath.startsWith(href) && href !== '/') {
         link.classList.add('active');
@@ -49,54 +48,75 @@ const siteName = profileData?.data?.name || 'Your Name';
   });
 </script>
 
-<header class={`sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 ${className || ''}`}>
-  <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-4">
+<header
+  class={`sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 ${className || ''}`}
+>
+  <nav class='mx-auto max-w-4xl px-4 sm:px-6 lg:px-8'>
+    <div class='flex items-center justify-between py-4'>
       <!-- Logo/Name -->
-      <div class="flex-shrink-0">
-        <a href="/" class="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+      <div class='flex-shrink-0'>
+        <a
+          href='/'
+          class='text-xl font-bold text-gray-900 transition-colors hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300'
+        >
           {siteName}
         </a>
       </div>
 
       <!-- Navigation Links -->
-      <div class="hidden md:block">
-        <div class="flex items-center space-x-8">
-          {navigation.map((item) => (
-            <a href={item.href} class="nav-link text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" title={item.description || ''}>
-              {item.label}
-            </a>
-          ))}
+      <div class='hidden md:block'>
+        <div class='flex items-center space-x-8'>
+          {
+            navigation.map((item: any) => (
+              <a
+                href={item.href}
+                class='nav-link text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100'
+                title={item.description || ''}
+              >
+                {item.label}
+              </a>
+            ))
+          }
         </div>
       </div>
 
       <!-- Theme Toggle & Mobile Menu -->
-      <div class="flex items-center space-x-4">
+      <div class='flex items-center space-x-4'>
         <!-- Interactive React Theme Toggle -->
         <ThemeToggle client:load />
 
         <!-- Mobile menu button -->
         <button
-          id="mobile-menu-toggle"
-          type="button"
-          class="md:hidden p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-          aria-label="Toggle mobile menu"
+          id='mobile-menu-toggle'
+          type='button'
+          class='rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-100 md:hidden'
+          aria-label='Toggle mobile menu'
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <svg class='h-6 w-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='2'
+              d='M4 6h16M4 12h16M4 18h16'></path>
           </svg>
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="md:hidden hidden pb-4">
-      <div class="flex flex-col space-y-4">
-        {navigation.map((item) => (
-          <a href={item.href} class="nav-link block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" title={item.description || ''}>
-            {item.label}
-          </a>
-        ))}
+    <div id='mobile-menu' class='hidden pb-4 md:hidden'>
+      <div class='flex flex-col space-y-4'>
+        {
+          navigation.map((item: any) => (
+            <a
+              href={item.href}
+              class='nav-link block text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100'
+              title={item.description || ''}
+            >
+              {item.label}
+            </a>
+          ))
+        }
       </div>
     </div>
   </nav>

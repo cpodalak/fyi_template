@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-950;
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
     @apply transition-colors duration-300;
   }
 
@@ -24,7 +24,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300 dark:bg-gray-700 rounded-full;
+    @apply rounded-full bg-gray-300 dark:bg-gray-700;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -34,36 +34,36 @@
 
 @layer components {
   .prose-custom {
-    @apply prose prose-gray dark:prose-invert prose-lg;
+    @apply prose prose-lg prose-gray dark:prose-invert;
     @apply max-w-none;
   }
 
   .btn-primary {
     @apply inline-flex items-center px-4 py-2 text-sm font-medium;
-    @apply text-white bg-gray-900 dark:bg-gray-100 dark:text-gray-900;
-    @apply border border-transparent rounded-md;
+    @apply bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900;
+    @apply rounded-md border border-transparent;
     @apply hover:bg-gray-800 dark:hover:bg-gray-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
     @apply transition-colors duration-200;
   }
 
   .btn-secondary {
     @apply inline-flex items-center px-4 py-2 text-sm font-medium;
-    @apply text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900;
-    @apply border border-gray-300 dark:border-gray-700 rounded-md;
+    @apply bg-white text-gray-700 dark:bg-gray-900 dark:text-gray-300;
+    @apply rounded-md border border-gray-300 dark:border-gray-700;
     @apply hover:bg-gray-50 dark:hover:bg-gray-800;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
     @apply transition-colors duration-200;
   }
 
   .card {
-    @apply bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
-    @apply rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+    @apply border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900;
+    @apply rounded-lg shadow-sm transition-shadow duration-200 hover:shadow-md;
   }
 
   .nav-link {
-    @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
-    @apply transition-colors duration-200 font-medium;
+    @apply text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100;
+    @apply font-medium transition-colors duration-200;
   }
 
   .nav-link.active {
@@ -73,7 +73,7 @@
 
 @layer utilities {
   .animate-fade-in {
-    @apply opacity-0 animate-pulse;
+    @apply animate-pulse opacity-0;
     animation: fadeIn 0.6s ease-in-out forwards;
   }
 

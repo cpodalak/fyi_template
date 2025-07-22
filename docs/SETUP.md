@@ -5,18 +5,22 @@ Quick repository setup and GitHub configuration.
 ## 🔧 GitHub Setup
 
 ### 1. Enable GitHub Pages
+
 1. Go to repository **Settings** → **Pages**
 2. Set **Source** to "Deploy from a branch"
 3. Select **gh-pages** branch
 4. Click **Save**
 
 ### 2. Repository Permissions
+
 Go to **Settings** → **Actions** → **General**:
+
 - **Actions permissions**: Allow all actions
 - **Workflow permissions**: Read and write permissions
 - Check: "Allow GitHub Actions to create and approve pull requests"
 
 ### 3. Environment Variables (Optional)
+
 Add in **Settings** → **Secrets and variables** → **Actions**:
 
 ```bash
